@@ -23,6 +23,6 @@ public class MyFirstSerenity
     public void myFirstTest(){
         driver.navigate().to("https://google.com");
         loginSteps.typeInSearch("gola");
-        loginSteps.searchStepsShouldHave("rtertre");
+        loginSteps.searchStepsShouldHave("ffff");
     }
 }
