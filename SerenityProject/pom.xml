@@ -139,7 +139,17 @@
             <artifactId>serenity-cucumber5</artifactId>
             <version>2.2.2</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.30</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-csv</artifactId>
+            <version>2.7.0</version>
+        </dependency>
 
     </dependencies>
 </project>
