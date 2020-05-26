@@ -23,6 +23,8 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.Version;
+import io.restassured.path.xml.XmlPath;
+import io.restassured.response.Response;
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 
 import net.thucydides.core.annotations.Steps;
@@ -60,7 +62,7 @@ public class MyFirstSereniyRestAssuredTest {
 		String request = null;
 		request = processTemplate(templateData);
 		System.out.println(request);
-		addPracticeSteps.submitRequest(request, testCaseName);
+		Response response = addPracticeSteps.submitRequest(request, testCaseName);
 
 		/////// Xpath Verification in Response:
 		Map xmlVerificationMap = getXmlVerificationMap(templateData.get("Status").toString().split(":"));
@@ -74,8 +76,33 @@ public class MyFirstSereniyRestAssuredTest {
 		}
 
 		////////////////////////////////////////////////////////////////////////////////////
-
+		//DB Validation
+		String dBValidation[] = templateData.get("DB").toString().split("SEPERATOR");
+		String queries[] = templateData.get("QUERY").toString().split("SEPERATOR");
+		String parameters[] = templateData.get("PARAMETERS").toString().split("SEPERATOR");
+		for(int indexdBValidation = 0; indexdBValidation < dBValidation.length ; indexdBValidation++) {
+		  System.out.println("dBValidation[indexdBValidation]"+dBValidation[indexdBValidation].trim());
+		  System.out.println("queries[indexdBValidation]"+indexdBValidation+"       "+queries[indexdBValidation].trim());
+		  System.out.println("parameters[indexdBValidation]"+indexdBValidation+"       "+parameters[indexdBValidation].trim());
+		  String finalQuery = finalQuery (response , queries[indexdBValidation].trim() , parameters[indexdBValidation].trim());
+		  System.out.println("finalQuery"+finalQuery);
+		}
 	}
+    
+    public String finalQuery (Response response , String query , String parameters) {
+    	String parametersArray [] = parameters.split("PARAMETERSEP");
+    	for(int indexParametersArray = 0; indexParametersArray < parametersArray.length ; indexParametersArray++) {
+    		String parameterAndValueArray[] = parametersArray[indexParametersArray].split("=");
+    		String parameter = parameterAndValueArray[0].trim();
+    		String value = parameterAndValueArray[1].trim();
+    		System.out.println("parameter+++++++++++----   "+parameter);
+    		System.out.println("value+++++++++++----   "+value);
+    		System.out.println("query+++++++++++----   "+query);
+    		query= query.replace(parameter, value);
+    	}
+    	return query;
+    }
+    
     
     public Map getXmlVerificationMap(String[] xmlVerification) {
 		Map h = new HashMap();
