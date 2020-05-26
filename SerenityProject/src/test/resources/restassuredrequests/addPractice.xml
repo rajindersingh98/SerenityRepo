@@ -9,37 +9,37 @@
         <WsAddPracticeRequest>
             <Practice>
 
-                <ExternalID>$ExternalID3</ExternalID>
+                <ExternalID>${ExternalID3}</ExternalID>
 
                 <PracticeDetails>
-                    <PracticeName>$PracticeName4</PracticeName>
-                    <OfficeName>$OfficeName8</OfficeName>
-                    <ContactLastName>$ContactLastName6</ContactLastName>
-                    <ContactEmail>$ContactEmail7</ContactEmail>
-                    <ContactFirstName>$ContactFirstName5</ContactFirstName>
-                    <LicenseCapCount>$LicenseCapCount10</LicenseCapCount>
-                    <ApplicationName>$ApplicationName9</ApplicationName>
+                    <PracticeName>${PracticeName4}</PracticeName>
+                    <OfficeName>${OfficeName8}</OfficeName>
+                    <ContactLastName>${ContactLastName6}</ContactLastName>
+                    <ContactEmail>${ContactEmail7}</ContactEmail>
+                    <ContactFirstName>${ContactFirstName5}</ContactFirstName>
+                    <LicenseCapCount>${LicenseCapCount10}</LicenseCapCount>
+                    <ApplicationName>${ApplicationName9}</ApplicationName>
 
-                    <LicenseWarningLimit>$LicenseWarningLimit21</LicenseWarningLimit>
+                    <LicenseWarningLimit>${LicenseWarningLimit21}</LicenseWarningLimit>
 
                     <ContactDetails>
                         <AddressDetails>
-                            <Address1>$Address111</Address1>
-                            <Address2>$Address212</Address2>
-                            <City>$City13</City>
-                            <State>$State14</State>
-                            <ZipCode>$ZipCode15</ZipCode>
+                            <Address1>${Address111}</Address1>
+                            <Address2>${Address212}</Address2>
+                            <City>${City13}</City>
+                            <State>${State14}</State>
+                            <ZipCode>${ZipCode15}</ZipCode>
                         </AddressDetails>
                         <BackPhoneDetails>
-                            <BackPhone>$BackPhone18</BackPhone>
-                            <BackPhoneExt>$BackPhoneExt19</BackPhoneExt>
+                            <BackPhone>${BackPhone18}</BackPhone>
+                            <BackPhoneExt>${BackPhoneExt19}</BackPhoneExt>
                         </BackPhoneDetails>
                         <PhoneDetails>
-                            <Phone>$Phone16</Phone>
-                            <PhoneExt>$PhoneExt17</PhoneExt>
+                            <Phone>${Phone16}</Phone>
+                            <PhoneExt>${PhoneExt17}</PhoneExt>
                         </PhoneDetails>
 
-                        <Fax>$Fax20</Fax>
+                        <Fax>${Fax20}</Fax>
                     </ContactDetails>
                     <PracticeSettings>
                         <EnableEPCS>y</EnableEPCS>
