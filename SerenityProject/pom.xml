@@ -39,7 +39,7 @@
                 <version>2.18</version>
                 <configuration>
                     <includes>
-                        <include>**/serenitybdd/cucumber/*.java</include>
+                        <include>**/serenitybdd/*.java</include>
                     </includes>
                 </configuration>
                 <executions>
@@ -107,11 +107,7 @@
             <version>4.13</version>
         </dependency>
 
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>4.3.0</version>
-        </dependency>
+     
 
         <!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-core -->
         <dependency>
@@ -149,6 +145,11 @@
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-csv</artifactId>
             <version>2.7.0</version>
+        </dependency>
+         <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-rest-assured</artifactId>
+            <version>2.2.8</version>
         </dependency>
 
     </dependencies>
