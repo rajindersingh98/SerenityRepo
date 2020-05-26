@@ -43,7 +43,7 @@ public class ProcessTemplate {
     public static ArrayList readCSVAndReturnMap() throws IOException {
         Map<String, String> keyVals = null;
         ArrayList<Map> list = new ArrayList<>();
-        File file = new File("src\\test\\resources\\csv\\addPractice.csv");
+        File file = new File("src\\test\\resources\\csv\\add_practice_xls_name_csv.csv");
         Reader reader = new FileReader(file);
         Iterator<Map<String, String>> iterator = new CsvMapper()
                 .readerFor(Map.class)
