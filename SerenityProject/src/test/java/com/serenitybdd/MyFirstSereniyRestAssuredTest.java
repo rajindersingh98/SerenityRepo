@@ -110,14 +110,13 @@ public class MyFirstSereniyRestAssuredTest {
 			  		String columnToVerify = getColumnValueToverify(dbColumnValue[indexDbColumnValue]);
 			  		try {
 			  			ResultSet rs  = getResultSet(dBValidation[indexdBValidation].trim(), finalQuery.trim());
+			  			String valuetoAssert = templateData.get(columnToVerify.trim()).toString();
+			  			 if("RandomName".equals(templateData.get(columnToVerify.trim()).toString())) {
+							 valuetoAssert = randomName;
+						 }
 			  			while (rs.next()) {
 				  			if("STRING".equals(columnAndType.get("type"))) {
-				  				if("RandomName".equals(templateData.get(columnToVerify.trim()).toString())) {
-				  					addPracticeSteps.checkDBValidation(randomName, rs.getString(columnAndType.get("column").toString()) , columnAndType.get("column").toString(), finalQuery.trim());	
-				  				}
-				  				else {
-				  					addPracticeSteps.checkDBValidation(templateData.get(columnToVerify.trim()).toString(), rs.getString(columnAndType.get("column").toString()) , columnAndType.get("column").toString(), finalQuery.trim());
-				  				}
+				  					addPracticeSteps.checkDBValidation(valuetoAssert, rs.getString(columnAndType.get("column").toString()) , columnAndType.get("column").toString(), finalQuery.trim());	
 				  			}	
 			  			}
 			  		}
