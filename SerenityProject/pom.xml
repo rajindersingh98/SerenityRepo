@@ -39,7 +39,7 @@
                 <version>2.18</version>
                 <configuration>
                     <includes>
-                        <include>**/serenitybdd/*.java</include>
+                        <include>**/serenitybdd/MyFirstSereniyRestAssuredTest.java</include>
                     </includes>
                 </configuration>
                 <executions>
@@ -80,26 +80,8 @@
     <dependencies>
 
 
-        <!-- https://mvnrepository.com/artifact/com.relevantcodes/extentreports -->
-        <dependency>
-            <groupId>com.relevantcodes</groupId>
-            <artifactId>extentreports</artifactId>
-            <version>2.41.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>selenide</artifactId>
-            <version>5.10.0</version>
-
-        </dependency>
-
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.8</version>
-
-        </dependency>
+            
+      
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
@@ -151,6 +133,13 @@
             <artifactId>serenity-rest-assured</artifactId>
             <version>2.2.8</version>
         </dependency>
-
+<!-- https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc8 -->
+<dependency>
+    <groupId>com.oracle.ojdbc</groupId>
+    <artifactId>ojdbc8</artifactId>
+    <version>8</version>
+    <scope>system</scope>
+		<systemPath>D:\Users\rsingh\git\AutomationExtentReports\ojdbc8.jar</systemPath>
+</dependency>
     </dependencies>
 </project>
