@@ -113,7 +113,7 @@ public class MyFirstSereniyRestAssuredTest {
 			  			while (rs.next()) {
 				  			if("STRING".equals(columnAndType.get("type"))) {
 				  				if("RandomName".equals(templateData.get(columnToVerify.trim()).toString())) {
-				  					addPracticeSteps.checkDBValidation(randomName, rs.getString(columnAndType.get("column").toString()) , columnAndType.get("column").toString());	
+				  					addPracticeSteps.checkDBValidation(randomName, rs.getString(columnAndType.get("column").toString()) , columnAndType.get("column").toString(), finalQuery.trim());	
 				  				}
 				  				else {
 				  				}
