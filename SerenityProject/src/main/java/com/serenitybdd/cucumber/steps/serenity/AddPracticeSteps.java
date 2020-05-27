@@ -28,7 +28,7 @@ public class AddPracticeSteps {
 	    }
 
 	 @Step("DB Validation column value Expected {0} , Actual {1} for DB column name {2} for query {3}")
-	    public void checkDBValidation(String expected , String actual, String dbColumnName){
+	    public void checkDBValidation(String expected , String actual, String dbColumnName , String query){
 		 Assert.assertEquals(expected, actual);
 	    }
 }
