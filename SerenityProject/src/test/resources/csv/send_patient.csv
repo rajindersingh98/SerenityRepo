@@ -1,0 +1,183 @@
+Test Case ID,Group,ExternalIDSet,FirstName,MiddleName,LastName,Deleted,DBVALIDATIONNEEDED,DB,QUERY,PARAMETERS,VERIFICATION,SYSTEMNAME1,SYSTEMNAME2,Status,,,,,,,,,,,,
+DELETE_PATIENT_BEFORE_TEST_START,1,"<ExternalIdentifierList>                
+                    	<ExternalIdentifier>
+                        <SystemName>SYSAUTONEW1</SystemName>
+                        <ExternalID>EXTSYS1</ExternalID>
+                    </ExternalIdentifier>
+					<ExternalIdentifier>
+                        <SystemName>SYSAUTONEW2</SystemName>
+                        <ExternalID>EXTSYS2</ExternalID>
+                    </ExternalIdentifier>
+					</ExternalIdentifierList>
+                 ",Nautomation,NNI,Npatient,y,n,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
+NEW_PATIENT_SINGLE_EXT_ID,1,"<ExternalIdentifierList>                
+                    	<ExternalIdentifier>
+                        <SystemName>SYSAUTONEW1</SystemName>
+                        <ExternalID>EXTSYS1</ExternalID>
+                    </ExternalIdentifier>
+					</ExternalIdentifierList>
+                 ",Automation,MI,Patient,n,y,"QA2MAIN
+SEPERATOR
+QA2MAIN","Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from patients where patient_id = {PATIENTID} and deleted='n'","{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID","SYSTEM_NAME  TYPE STRING=SYSTEMNAME1
+SEPERATOR
+LAST_NAME TYPE STRING=LastName",sysautonew1,,"RCExtResponse.Response.PatientList.Patient.Status=created:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=sysautonew1",,,,,,,,,,,,
+ADD_NEW_EXTERNAL_ID_TO_PATIENT,1,"<ExternalIdentifierList>                
+                    	<ExternalIdentifier>
+                        <SystemName>SYSAUTONEW1</SystemName>
+                        <ExternalID>EXTSYS1</ExternalID>
+                    </ExternalIdentifier>
+					<ExternalIdentifier>
+                        <SystemName>SYSAUTONEW2</SystemName>
+                        <ExternalID>EXTSYS2</ExternalID>
+                    </ExternalIdentifier>
+					</ExternalIdentifierList>
+                 ",Uautomation,UNI,Upatient,n,y,"QA2MAIN
+SEPERATOR
+QA2MAIN
+SEPERATOR
+QA2MAIN","Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from patients where patient_id = {PATIENTID} and deleted='n'","{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[0]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[0]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[1]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[1]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID","SYSTEM_NAME  TYPE STRING=SYSTEMNAME1
+SEPERATOR
+SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
+SEPERATOR
+LAST_NAME TYPE STRING=LastName",sysautonew1,sysautonew2,RCExtResponse.Response.PatientList.Patient.Status=updated,,,,,,,,,,,,
+USE_EXTID_TWO_TO_UPDATE_PATIENT,1,"<ExternalIdentifierList>                
+<ExternalIdentifier>
+<SystemName>SYSAUTONEW2</SystemName>
+<ExternalID>EXTSYS2</ExternalID>
+</ExternalIdentifier>
+</ExternalIdentifierList>
+                 ",Nautomation,NNI,Npatient,n,y,"QA2MAIN
+SEPERATOR
+QA2MAIN
+SEPERATOR
+QA2MAIN","Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from patients where patient_id = {PATIENTID} and deleted='n'","{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[0]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[0]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[1]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[1]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID","SYSTEM_NAME  TYPE STRING=SYSTEMNAME1
+SEPERATOR
+SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
+SEPERATOR
+LAST_NAME TYPE STRING=LastName",sysautonew1,sysautonew2,RCExtResponse.Response.PatientList.Patient.Status=updated,,,,,,,,,,,,
+DELETE_PATIENT_AFTER_TEST_END,1,"<ExternalIdentifierList>                
+                    	<ExternalIdentifier>
+                        <SystemName>SYSAUTONEW1</SystemName>
+                        <ExternalID>EXTSYS1</ExternalID>
+                    </ExternalIdentifier>
+					<ExternalIdentifier>
+                        <SystemName>SYSAUTONEW2</SystemName>
+                        <ExternalID>EXTSYS2</ExternalID>
+                    </ExternalIdentifier>
+					</ExternalIdentifierList>
+                 ",Nautomation,NNI,Npatient,y,y,"QA2MAIN
+SEPERATOR
+QA2MAIN
+SEPERATOR
+QA2MAIN","Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='y'
+SEPERATOR
+Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='y'
+SEPERATOR
+Select * from patients where patient_id = {PATIENTID} and deleted='y'","{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[0]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[0]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[1]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[1]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID","SYSTEM_NAME  TYPE STRING=SYSTEMNAME1
+SEPERATOR
+SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
+SEPERATOR
+LAST_NAME TYPE STRING=LastName",sysautonew1,sysautonew2,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
+DELETE_PATIENT_ONE_BEFORE_TEST,2,"<ExternalIdentifierList>                
+                    	<ExternalIdentifier>
+                        <SystemName>TEST1</SystemName>
+                        <ExternalID>EXTTEST1</ExternalID>
+                    </ExternalIdentifier>
+</ExternalIdentifierList>
+				",newpatient,mpatient,lpatient,y,n,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
+DELETE_PATIENT_TWO_BEFORE_TEST,2,"<ExternalIdentifierList>                
+                    	<ExternalIdentifier>
+                        <SystemName>TEST1</SystemName>
+                        <ExternalID>EXTTEST2</ExternalID>
+                    </ExternalIdentifier>
+</ExternalIdentifierList>
+				",newpatient,mpatient,lpatient,y,n,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
+CREATE_NEW_PATIENT_WITH_EXTERNAL_ID,2,"<ExternalIdentifierList>                
+                    	<ExternalIdentifier>
+                        <SystemName>TEST1</SystemName>
+                        <ExternalID>EXTTEST1</ExternalID>
+                    </ExternalIdentifier>
+</ExternalIdentifierList>
+				",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=created:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=test1:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTTEST1",,,,,,,,,,,,
+VERIFY_NEW_PATIENT_ID_CREATED_ON_CHANGING_EXTID_ONLY,2,"<ExternalIdentifierList>                
+                    	<ExternalIdentifier>
+                        <SystemName>TEST1</SystemName>
+                        <ExternalID>EXTTEST2</ExternalID>
+                    </ExternalIdentifier>
+</ExternalIdentifierList>
+				",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=created:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=test1:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTTEST2",,,,,,,,,,,,
+DELETE_PATIENT_ONE,2,"<ExternalIdentifierList>                
+                    	<ExternalIdentifier>
+                        <SystemName>TEST1</SystemName>
+                        <ExternalID>EXTTEST1</ExternalID>
+                    </ExternalIdentifier>
+</ExternalIdentifierList>
+				",newpatient,mpatient,lpatient,y,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=deleted:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=test1:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTTEST1",,,,,,,,,,,,
+DELETE_PATIENT_TWO,2,"<ExternalIdentifierList>                
+                    	<ExternalIdentifier>
+                        <SystemName>TEST1</SystemName>
+                        <ExternalID>EXTTEST2</ExternalID>
+                    </ExternalIdentifier>
+</ExternalIdentifierList>
+				",newpatient,mpatient,lpatient,y,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=deleted:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=test1:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTTEST2",,,,,,,,,,,,
