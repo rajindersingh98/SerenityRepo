@@ -181,3 +181,47 @@ DELETE_PATIENT_TWO,2,"<ExternalIdentifierList>
 				",newpatient,mpatient,lpatient,y,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=deleted:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=test1:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTTEST2",,,,,,,,,,,,
+WITHOUT_EXTERNAL_ID,errorcase1,"<ExternalIdentifierList>                
+                    	<ExternalIdentifier>
+                        <SystemName>TEST1</SystemName>
+                        <ExternalID></ExternalID>
+                    </ExternalIdentifier>
+</ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
+RCExtResponse.Response.PatientList.Patient.Error.Text=ExternalId cannot be empty in ExternalIdentifier.",,,,,,,,,,,,
+WITHOUT_SYSTEM_NAME,errorcase2,"<ExternalIdentifierList>                
+                    	<ExternalIdentifier>
+                        <SystemName></SystemName>
+                        <ExternalID>EXTTEST1</ExternalID>
+                    </ExternalIdentifier>
+</ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
+RCExtResponse.Response.PatientList.Patient.Error.Text=SystemName cannot be empty in ExternalIdentifier.",,,,,,,,,,,,
+MULTIPLE_EXTERNAL_ID_SET_SYSTEMNAME_EMPTY,errorcase3,"<ExternalIdentifierList>                
+                    	<ExternalIdentifier>
+                        <SystemName></SystemName>
+                        <ExternalID>EXTTEST1</ExternalID>
+                    </ExternalIdentifier>
+					<ExternalIdentifier>
+                        <SystemName></SystemName>
+                        <ExternalID>EXTTEST1</ExternalID>
+                    </ExternalIdentifier>
+					<ExternalIdentifier>
+                        <SystemName>dsasdda</SystemName>
+                        <ExternalID>sadeqwe</ExternalID>
+                    </ExternalIdentifier>
+</ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
+RCExtResponse.Response.PatientList.Patient.Error.Text=SystemName cannot be empty in ExternalIdentifier.",,,,,,,,,,,,
+MULTIPLE_EXTERNAL_ID_SET_EXTERNAL_ID_EMPTY,errorcase4,"<ExternalIdentifierList>                
+                    	<ExternalIdentifier>
+                        <SystemName>sadddaaaaad</SystemName>
+                        <ExternalID>EXTTEST1</ExternalID>
+                    </ExternalIdentifier>
+					<ExternalIdentifier>
+                        <SystemName>dsadasd</SystemName>
+                        <ExternalID></ExternalID>
+                    </ExternalIdentifier>
+					<ExternalIdentifier>
+                        <SystemName>dsasdda</SystemName>
+                        <ExternalID></ExternalID>
+                    </ExternalIdentifier>
+</ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
+RCExtResponse.Response.PatientList.Patient.Error.Text=ExternalId cannot be empty in ExternalIdentifier.",,,,,,,,,,,,
