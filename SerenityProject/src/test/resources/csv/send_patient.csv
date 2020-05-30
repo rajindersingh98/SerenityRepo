@@ -1,4 +1,5 @@
 Test Case ID,Scenario,Group,ExternalIDSet,FirstName,MiddleName,LastName,Deleted,DBVALIDATIONNEEDED,DB,QUERY,PARAMETERS,VERIFICATION,SYSTEMNAME1,SYSTEMNAME2,Status,,,,,,,,,,,,
+Scenario Defination,,AAA,,,,,,,,,,,,,,,,,,,,,,,,,
 DELETE_PATIENT_BEFORE_TEST_START,"1. Add Patient with one ExternalID
 2. Add one more ExternalID to Patient 
 3.Use ExternalID in Step 2 to Update the Patient

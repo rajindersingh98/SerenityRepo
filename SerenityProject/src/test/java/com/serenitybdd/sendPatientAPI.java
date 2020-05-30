@@ -32,6 +32,7 @@ import freemarker.template.TemplateException;
 import freemarker.template.Version;
 import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
+import net.serenitybdd.core.Serenity;
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 
 import net.thucydides.core.annotations.Steps;
@@ -39,6 +40,7 @@ import net.thucydides.junit.annotations.Qualifier;
 import net.thucydides.junit.annotations.TestData;
 
 @RunWith(SerenityParameterizedRunner.class)
+
 public class sendPatientAPI {
 
 	static int testcase = 0;
@@ -86,6 +88,10 @@ public class sendPatientAPI {
 		for (int i = 0; i < numberOfStepsInGroup.size(); i++) {
 			@SuppressWarnings("rawtypes")
 			Map m = numberOfStepsInGroup.get(i);
+			if(m.get("Test Case ID").equals("Scenario Defination")) {
+				addMedicationSteps.scenario();
+			}
+			else {
 			request = processTemplate(m);
 
 			Response response = addMedicationSteps.submitRequest(request, m.get("Test Case ID").toString());
@@ -123,6 +129,7 @@ public class sendPatientAPI {
 						String columnToVerify = getColumnValueToverify(dbColumnValue[indexDbColumnValue]);
 						try {
 							ResultSet rs = getResultSet(dBValidation[indexdBValidation].trim(), finalQuery.trim());
+							Serenity.recordReportData().withTitle("Database evidence").andContents(rs.toString());
 							String valuetoAssert = m.get(columnToVerify.trim()).toString();
 							if ("RandomName".equals(m.get(columnToVerify.trim()).toString())) {
 								valuetoAssert = randomName;
@@ -144,6 +151,7 @@ public class sendPatientAPI {
 			}
 
 			///////////////////////////////////////////////////////////////////////////
+		  }
 		}
 		testcase++;
 	}
