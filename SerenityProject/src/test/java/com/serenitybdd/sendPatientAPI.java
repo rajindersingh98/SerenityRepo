@@ -9,9 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -25,9 +23,8 @@ import org.junit.runner.RunWith;
 import com.db.DFDBConnection;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import com.google.common.collect.Multiset.Entry;
 import com.serenitybdd.cucumber.steps.serenity.AddMedicationSteps;
-import com.serenitybdd.cucumber.steps.serenity.AddPracticeSteps;
+
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -52,6 +49,7 @@ public class sendPatientAPI {
 	@TestData
 	public static Collection<Object[]> testData() throws IOException {
 		List<Object[]> results = new ArrayList<Object[]>();
+		@SuppressWarnings("unchecked")
 		ArrayList<Map<String, String>> testDataMap = readCSVAndReturnMap();
 		List<List<Map<String, String>>> result = testDataMap.stream()
 				.collect(Collectors.groupingBy(m -> m.get("Group"))).entrySet().stream()
@@ -86,6 +84,7 @@ public class sendPatientAPI {
 
 		List<Map<String, String>> numberOfStepsInGroup = listOfTestcases.get(testcase);
 		for (int i = 0; i < numberOfStepsInGroup.size(); i++) {
+			@SuppressWarnings("rawtypes")
 			Map m = numberOfStepsInGroup.get(i);
 			request = processTemplate(m);
 
@@ -94,9 +93,11 @@ public class sendPatientAPI {
 			/////// Xpath Verification in Response:
 			@SuppressWarnings("rawtypes")
 			Map xmlVerificationMap = getXmlVerificationMap(m.get("Status").toString().split(":"));
+			@SuppressWarnings("rawtypes")
 			Iterator xmlVerificationEntries = xmlVerificationMap.entrySet().iterator();
 
 			while (xmlVerificationEntries.hasNext()) {
+				@SuppressWarnings("rawtypes")
 				Map.Entry thisEntry = (Map.Entry) xmlVerificationEntries.next();
 				String key = thisEntry.getKey().toString();
 				String value = thisEntry.getValue().toString();
@@ -117,6 +118,7 @@ public class sendPatientAPI {
 							parameters[indexdBValidation].trim());
 					String dbColumnValue[] = verification[indexdBValidation].split("VERIFICATIONSEP");
 					for (int indexDbColumnValue = 0; indexDbColumnValue < dbColumnValue.length; indexDbColumnValue++) {
+						@SuppressWarnings("rawtypes")
 						Map columnAndType = getColumnNameAndType(dbColumnValue[indexDbColumnValue]);
 						String columnToVerify = getColumnValueToverify(dbColumnValue[indexDbColumnValue]);
 						try {
@@ -173,6 +175,7 @@ public class sendPatientAPI {
 		return query;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked"})
 	public Map getXmlVerificationMap(String[] xmlVerification) {
 		Map h = new HashMap();
 		for (int index = 0; index < xmlVerification.length; index++) {
@@ -182,7 +185,7 @@ public class sendPatientAPI {
 		return h;
 	}
 
-	public String processTemplate(Map templateData) throws IOException {
+	public String processTemplate(@SuppressWarnings("rawtypes") Map templateData) throws IOException {
 		Configuration cfg = new Configuration(new Version("2.3.23"));
 		cfg.setDefaultEncoding("UTF-8");
 		cfg.setDirectoryForTemplateLoading(new File("src\\test\\resources\\restassuredrequests"));
@@ -199,7 +202,9 @@ public class sendPatientAPI {
 
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static ArrayList readCSVAndReturnMap() throws IOException {
+		@SuppressWarnings("unused")
 		Map<String, String> keyVals = null;
 		ArrayList<Map> list = new ArrayList<>();
 		File file = new File("src\\test\\resources\\csv\\send_patient.csv");
