@@ -38,10 +38,13 @@ import io.restassured.response.Response;
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 
 import net.thucydides.core.annotations.Steps;
+import net.thucydides.junit.annotations.Qualifier;
 import net.thucydides.junit.annotations.TestData;
 
 @RunWith(SerenityParameterizedRunner.class)
 public class sendPatientAPI {
+
+	static int testcase = 0;
 
 	@Steps
 	AddMedicationSteps addMedicationSteps;
@@ -54,32 +57,38 @@ public class sendPatientAPI {
 				.collect(Collectors.groupingBy(m -> m.get("Group"))).entrySet().stream()
 				.sorted(Map.Entry.comparingByKey()) // sort on requirement
 				.map(java.util.Map.Entry::getValue).collect(Collectors.toList());
-		System.out.println("SIIIIIIIIIIIIIIIIIIIze" + result.size());
+
+		listOfTestcases = result;
 
 		for (int i = 0; i < result.size(); i++) {
-			List<Map<String, String>> firstParameter = result.get(i);
-			results.add(new Object[] { firstParameter });
+			Map<String, String> firstParameter = result.get(i).get(0);
+			results.add(new Object[] { firstParameter.get("Group") });
 		}
 		return results;
 	}
 
-	List<Map<String, String>> listOfTescases;
+	@Qualifier
+	public String qualifier() {
+		return testCaseName;
+	}
+
+	private static List<List<Map<String, String>>> listOfTestcases;
 	String testCaseName;
 	private String randomName = null;
 	String request;
 
-	public sendPatientAPI(List<Map<String, String>> list) {
-		this.listOfTescases = list;
-
+	public sendPatientAPI(String name) {
+		this.testCaseName = name;
 	}
 
 	@Test
 	public void test() throws IOException, SQLException {
-		for (int i = 0; i < listOfTescases.size(); i++) {
-			Map m = listOfTescases.get(i);
-			System.out.println(m);
+
+		List<Map<String, String>> numberOfStepsInGroup = listOfTestcases.get(testcase);
+		for (int i = 0; i < numberOfStepsInGroup.size(); i++) {
+			Map m = numberOfStepsInGroup.get(i);
 			request = processTemplate(m);
-			System.out.println(request);
+
 			Response response = addMedicationSteps.submitRequest(request, m.get("Test Case ID").toString());
 
 			/////// Xpath Verification in Response:
@@ -104,23 +113,11 @@ public class sendPatientAPI {
 				String parameters[] = m.get("PARAMETERS").toString().split("SEPERATOR");
 				String verification[] = m.get("VERIFICATION").toString().split("SEPERATOR");
 				for (int indexdBValidation = 0; indexdBValidation < dBValidation.length; indexdBValidation++) {
-					System.out.println("dBValidation[indexdBValidation]" + dBValidation[indexdBValidation].trim());
-					System.out.println("queries[indexdBValidation]" + indexdBValidation + "       "
-							+ queries[indexdBValidation].trim());
-					System.out.println("parameters[indexdBValidation]" + indexdBValidation + "       "
-							+ parameters[indexdBValidation].trim());
 					String finalQuery = finalQuery(response, queries[indexdBValidation].trim(),
 							parameters[indexdBValidation].trim());
-					System.out.println("finalQuery" + finalQuery);
 					String dbColumnValue[] = verification[indexdBValidation].split("VERIFICATIONSEP");
-					System.out.println("dbColumnValue" + dbColumnValue.length);
-					System.out.println("dbColumnValue" + dbColumnValue[0]);
 					for (int indexDbColumnValue = 0; indexDbColumnValue < dbColumnValue.length; indexDbColumnValue++) {
 						Map columnAndType = getColumnNameAndType(dbColumnValue[indexDbColumnValue]);
-						System.out.println("COLUMN  " + indexDbColumnValue + "   " + columnAndType.get("column"));
-						System.out.println("TYPE  " + indexDbColumnValue + "   " + columnAndType.get("type"));
-						System.out.println(
-								"VALUE TO VERIFY  " + getColumnValueToverify(dbColumnValue[indexDbColumnValue]));
 						String columnToVerify = getColumnValueToverify(dbColumnValue[indexDbColumnValue]);
 						try {
 							ResultSet rs = getResultSet(dBValidation[indexdBValidation].trim(), finalQuery.trim());
@@ -146,7 +143,7 @@ public class sendPatientAPI {
 
 			///////////////////////////////////////////////////////////////////////////
 		}
-
+		testcase++;
 	}
 
 	public String getColumnValueToverify(String dbColumnValue) {
@@ -171,9 +168,6 @@ public class sendPatientAPI {
 			String parameterAndValueArray[] = parametersArray[indexParametersArray].split("=");
 			String parameter = parameterAndValueArray[0].trim();
 			String value = XmlPath.from(response.asString()).get(parameterAndValueArray[1].trim());
-			System.out.println("parameter+++++++++++----   " + parameter);
-			System.out.println("value+++++++++++----   " + value);
-			System.out.println("query+++++++++++----   " + query);
 			query = query.replace(parameter, value);
 		}
 		return query;
@@ -217,7 +211,6 @@ public class sendPatientAPI {
 			list.add(iterator.next());
 
 		}
-		// System.out.println(list);
 		return list;
 	}
 
