@@ -1,5 +1,8 @@
-Test Case ID,Group,ExternalIDSet,FirstName,MiddleName,LastName,Deleted,DBVALIDATIONNEEDED,DB,QUERY,PARAMETERS,VERIFICATION,SYSTEMNAME1,SYSTEMNAME2,Status,,,,,,,,,,,,
-DELETE_PATIENT_BEFORE_TEST_START,1,"<ExternalIdentifierList>                
+Test Case ID,Scenario,Group,ExternalIDSet,FirstName,MiddleName,LastName,Deleted,DBVALIDATIONNEEDED,DB,QUERY,PARAMETERS,VERIFICATION,SYSTEMNAME1,SYSTEMNAME2,Status,,,,,,,,,,,,
+DELETE_PATIENT_BEFORE_TEST_START,"1. Add Patient with one ExternalID
+2. Add one more ExternalID to Patient 
+3.Use ExternalID in Step 2 to Update the Patient
+",AddPatient-Single-Multiple-External-Id,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName>SYSAUTONEW1</SystemName>
                         <ExternalID>EXTSYS1</ExternalID>
@@ -10,7 +13,10 @@ DELETE_PATIENT_BEFORE_TEST_START,1,"<ExternalIdentifierList>
                     </ExternalIdentifier>
 					</ExternalIdentifierList>
                  ",Nautomation,NNI,Npatient,y,n,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
-NEW_PATIENT_SINGLE_EXT_ID,1,"<ExternalIdentifierList>                
+NEW_PATIENT_SINGLE_EXT_ID,"1. Add Patient with one ExternalID
+2. Add one more ExternalID to Patient 
+3.Use ExternalID in Step 2 to Update the Patient
+",AddPatient-Single-Multiple-External-Id,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName>SYSAUTONEW1</SystemName>
                         <ExternalID>EXTSYS1</ExternalID>
@@ -30,7 +36,10 @@ SEPERATOR
 SEPERATOR
 LAST_NAME TYPE STRING=LastName",sysautonew1,,"RCExtResponse.Response.PatientList.Patient.Status=created:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=sysautonew1",,,,,,,,,,,,
-ADD_NEW_EXTERNAL_ID_TO_PATIENT,1,"<ExternalIdentifierList>                
+ADD_NEW_EXTERNAL_ID_TO_PATIENT,"1. Add Patient with one ExternalID
+2. Add one more ExternalID to Patient 
+3.Use ExternalID in Step 2 to Update the Patient
+",AddPatient-Single-Multiple-External-Id,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName>SYSAUTONEW1</SystemName>
                         <ExternalID>EXTSYS1</ExternalID>
@@ -65,7 +74,10 @@ SEPERATOR
 SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
 SEPERATOR
 LAST_NAME TYPE STRING=LastName",sysautonew1,sysautonew2,RCExtResponse.Response.PatientList.Patient.Status=updated,,,,,,,,,,,,
-USE_EXTID_TWO_TO_UPDATE_PATIENT,1,"<ExternalIdentifierList>                
+USE_EXTID_TWO_TO_UPDATE_PATIENT,"1. Add Patient with one ExternalID
+2. Add one more ExternalID to Patient 
+3.Use ExternalID in Step 2 to Update the Patient
+",AddPatient-Single-Multiple-External-Id,"<ExternalIdentifierList>                
 <ExternalIdentifier>
 <SystemName>SYSAUTONEW2</SystemName>
 <ExternalID>EXTSYS2</ExternalID>
@@ -96,7 +108,10 @@ SEPERATOR
 SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
 SEPERATOR
 LAST_NAME TYPE STRING=LastName",sysautonew1,sysautonew2,RCExtResponse.Response.PatientList.Patient.Status=updated,,,,,,,,,,,,
-DELETE_PATIENT_AFTER_TEST_END,1,"<ExternalIdentifierList>                
+DELETE_PATIENT_AFTER_TEST_END,"1. Add Patient with one ExternalID
+2. Add one more ExternalID to Patient 
+3.Use ExternalID in Step 2 to Update the Patient
+",AddPatient-Single-Multiple-External-Id,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName>SYSAUTONEW1</SystemName>
                         <ExternalID>EXTSYS1</ExternalID>
@@ -131,21 +146,24 @@ SEPERATOR
 SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
 SEPERATOR
 LAST_NAME TYPE STRING=LastName",sysautonew1,sysautonew2,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
-DELETE_PATIENT_ONE_BEFORE_TEST,2,"<ExternalIdentifierList>                
+DELETE_PATIENT_ONE_BEFORE_TEST,"1. Create Patient with ExternalID 
+2. Send Same Patient again and just update ExternalID,Keep SystemName same do not update anything else",AddPatient-NewPatientCreated_On_Changing_ExternalID_only,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName>TEST1</SystemName>
                         <ExternalID>EXTTEST1</ExternalID>
                     </ExternalIdentifier>
 </ExternalIdentifierList>
 				",newpatient,mpatient,lpatient,y,n,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
-DELETE_PATIENT_TWO_BEFORE_TEST,2,"<ExternalIdentifierList>                
+DELETE_PATIENT_TWO_BEFORE_TEST,"1. Create Patient with ExternalID 
+2. Send Same Patient again and just update ExternalID,Keep SystemName same do not update anything else",AddPatient-NewPatientCreated_On_Changing_ExternalID_only,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName>TEST1</SystemName>
                         <ExternalID>EXTTEST2</ExternalID>
                     </ExternalIdentifier>
 </ExternalIdentifierList>
 				",newpatient,mpatient,lpatient,y,n,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
-CREATE_NEW_PATIENT_WITH_EXTERNAL_ID,2,"<ExternalIdentifierList>                
+CREATE_NEW_PATIENT_WITH_EXTERNAL_ID,"1. Create Patient with ExternalID 
+2. Send Same Patient again and just update ExternalID,Keep SystemName same do not update anything else",AddPatient-NewPatientCreated_On_Changing_ExternalID_only,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName>TEST1</SystemName>
                         <ExternalID>EXTTEST1</ExternalID>
@@ -154,7 +172,8 @@ CREATE_NEW_PATIENT_WITH_EXTERNAL_ID,2,"<ExternalIdentifierList>
 				",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=created:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=test1:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTTEST1",,,,,,,,,,,,
-VERIFY_NEW_PATIENT_ID_CREATED_ON_CHANGING_EXTID_ONLY,2,"<ExternalIdentifierList>                
+VERIFY_NEW_PATIENT_ID_CREATED_ON_CHANGING_EXTID_ONLY,"1. Create Patient with ExternalID 
+2. Send Same Patient again and just update ExternalID,Keep SystemName same do not update anything else",AddPatient-NewPatientCreated_On_Changing_ExternalID_only,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName>TEST1</SystemName>
                         <ExternalID>EXTTEST2</ExternalID>
@@ -163,7 +182,8 @@ VERIFY_NEW_PATIENT_ID_CREATED_ON_CHANGING_EXTID_ONLY,2,"<ExternalIdentifierList>
 				",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=created:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=test1:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTTEST2",,,,,,,,,,,,
-DELETE_PATIENT_ONE,2,"<ExternalIdentifierList>                
+DELETE_PATIENT_ONE,"1. Create Patient with ExternalID 
+2. Send Same Patient again and just update ExternalID,Keep SystemName same do not update anything else",AddPatient-NewPatientCreated_On_Changing_ExternalID_only,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName>TEST1</SystemName>
                         <ExternalID>EXTTEST1</ExternalID>
@@ -172,7 +192,8 @@ DELETE_PATIENT_ONE,2,"<ExternalIdentifierList>
 				",newpatient,mpatient,lpatient,y,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=deleted:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=test1:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTTEST1",,,,,,,,,,,,
-DELETE_PATIENT_TWO,2,"<ExternalIdentifierList>                
+DELETE_PATIENT_TWO,"1. Create Patient with ExternalID 
+2. Send Same Patient again and just update ExternalID,Keep SystemName same do not update anything else",AddPatient-NewPatientCreated_On_Changing_ExternalID_only,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName>TEST1</SystemName>
                         <ExternalID>EXTTEST2</ExternalID>
@@ -181,21 +202,21 @@ DELETE_PATIENT_TWO,2,"<ExternalIdentifierList>
 				",newpatient,mpatient,lpatient,y,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=deleted:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=test1:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTTEST2",,,,,,,,,,,,
-WITHOUT_EXTERNAL_ID,errorcase1,"<ExternalIdentifierList>                
+WITHOUT_EXTERNAL_ID,1. Send_patient with ExternalIDSet missing ExternalID,WITHOUT_EXTERNAL_ID,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName>TEST1</SystemName>
                         <ExternalID></ExternalID>
                     </ExternalIdentifier>
 </ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
 RCExtResponse.Response.PatientList.Patient.Error.Text=ExternalId cannot be empty in ExternalIdentifier.",,,,,,,,,,,,
-WITHOUT_SYSTEM_NAME,errorcase2,"<ExternalIdentifierList>                
+WITHOUT_SYSTEM_NAME,1. Send_patient with ExternalIDSet missing SystemName,WITHOUT_SYSTEM_NAME,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName></SystemName>
                         <ExternalID>EXTTEST1</ExternalID>
                     </ExternalIdentifier>
 </ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
 RCExtResponse.Response.PatientList.Patient.Error.Text=SystemName cannot be empty in ExternalIdentifier.",,,,,,,,,,,,
-MULTIPLE_EXTERNAL_ID_SET_SYSTEMNAME_EMPTY,errorcase3,"<ExternalIdentifierList>                
+MULTIPLE_EXTERNAL_ID_SET_SYSTEMNAME_EMPTY,1. Send_patient with Multiple ExternalIDSet missing SystemName,MULTIPLE_EXTERNAL_ID_SET_SYSTEMNAME_EMPTY,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName></SystemName>
                         <ExternalID>EXTTEST1</ExternalID>
@@ -210,7 +231,7 @@ MULTIPLE_EXTERNAL_ID_SET_SYSTEMNAME_EMPTY,errorcase3,"<ExternalIdentifierList>
                     </ExternalIdentifier>
 </ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
 RCExtResponse.Response.PatientList.Patient.Error.Text=SystemName cannot be empty in ExternalIdentifier.",,,,,,,,,,,,
-MULTIPLE_EXTERNAL_ID_SET_EXTERNAL_ID_EMPTY,errorcase4,"<ExternalIdentifierList>                
+MULTIPLE_EXTERNAL_ID_SET_EXTERNAL_ID_EMPTY,1. Send_patient with Multiple ExternalIDSet missing ExternalID,MULTIPLE_EXTERNAL_ID_SET_EXTERNAL_ID_EMPTY,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName>sadddaaaaad</SystemName>
                         <ExternalID>EXTTEST1</ExternalID>
@@ -225,3 +246,6 @@ MULTIPLE_EXTERNAL_ID_SET_EXTERNAL_ID_EMPTY,errorcase4,"<ExternalIdentifierList>
                     </ExternalIdentifier>
 </ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
 RCExtResponse.Response.PatientList.Patient.Error.Text=ExternalId cannot be empty in ExternalIdentifier.",,,,,,,,,,,,
+EMPTY_EXTERNAL_ID_SET,1. Send_patient with Empty ExternalIDSet,EMPTY_EXTERNAL_ID_SET,"<ExternalIdentifierList>                
+ </ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
+RCExtResponse.Response.PatientList.Patient.Error.Text=SystemName cannot be empty in ExternalIdentifier.",,,,,,,,,,,,
