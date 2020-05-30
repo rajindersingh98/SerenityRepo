@@ -46,7 +46,7 @@ public class sendPatientAPI {
 	@Steps
 	AddMedicationSteps addMedicationSteps;
 
-	@TestData
+	@TestData(columnNames = "TestcaseID,Steps")
 	public static Collection<Object[]> testData() throws IOException {
 		List<Object[]> results = new ArrayList<Object[]>();
 		@SuppressWarnings("unchecked")
@@ -60,7 +60,7 @@ public class sendPatientAPI {
 
 		for (int i = 0; i < result.size(); i++) {
 			Map<String, String> firstParameter = result.get(i).get(0);
-			results.add(new Object[] { firstParameter.get("Group") });
+			results.add(new Object[] { firstParameter.get("Group") ,firstParameter.get("Scenario")  });
 		}
 		return results;
 	}
@@ -75,7 +75,7 @@ public class sendPatientAPI {
 	private String randomName = null;
 	String request;
 
-	public sendPatientAPI(String name) {
+	public sendPatientAPI(String name, String scenarioName) {
 		this.testCaseName = name;
 	}
 
@@ -254,5 +254,7 @@ public class sendPatientAPI {
 
 		return rs;
 	}
+	
+	
 
 }
