@@ -11,7 +11,7 @@ import net.thucydides.core.annotations.Step;
 public class AddMedicationSteps {
 	Response res = null;
 	
-	 @Step("Submit Send Patient API as below - {0}.")
+	 @Step("Submit Send Patient API as below - {1}.")
 	    public Response submitRequest(String request, String testcaseName){
 		 res = SerenityRest.given().contentType(ContentType.XML).accept(ContentType.XML).body(request).post("http://10.100.12.154:51001/servlet/rcopia.servlet.EngineServlet");
 		 return res;
