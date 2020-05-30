@@ -80,7 +80,7 @@ public class sendPatientAPI {
 	}
 
 	@Test
-	public void test() throws IOException, SQLException {
+	public void sendPatientExternalIDSetTests() throws IOException, SQLException {
 
 		List<Map<String, String>> numberOfStepsInGroup = listOfTestcases.get(testcase);
 		for (int i = 0; i < numberOfStepsInGroup.size(); i++) {
