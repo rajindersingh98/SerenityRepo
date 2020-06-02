@@ -134,12 +134,12 @@ public class sendPatientAPI {
 					for (int indexDbColumnValue = 0; indexDbColumnValue < dbColumnValue.length; indexDbColumnValue++) {
 						@SuppressWarnings("rawtypes")
 						Map columnAndType = getColumnNameAndType(dbColumnValue[indexDbColumnValue]);
-						String columnToVerify = getColumnValueToverify(dbColumnValue[indexDbColumnValue]);
+						String columnValueToVerify = getColumnValueToverify(dbColumnValue[indexDbColumnValue]);
 						try {
 							ResultSet rs = getResultSet(dBValidation[indexdBValidation].trim(), finalQuery.trim());
 							Serenity.recordReportData().withTitle("Database evidence").andContents(rs.toString());
-							String valuetoAssert = m.get(columnToVerify.trim()).toString();
-							if ("RandomName".equals(m.get(columnToVerify.trim()).toString())) {
+							String valuetoAssert = m.get(columnValueToVerify.trim()).toString();
+							if ("RandomName".equals(m.get(columnValueToVerify.trim()).toString())) {
 								valuetoAssert = randomName;
 							}
 							while (rs.next()) {
