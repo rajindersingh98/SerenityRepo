@@ -772,5 +772,5 @@ VERIFICATIONSEP
 FIRST_NAME TYPE STRING=FirstName
 VERIFICATIONSEP
 MIDDLE_INITIAL TYPE STRING=MiddleName",t9_case,t10_case,,"RCExtResponse.Response.PatientList.Patient.Status=updated:
-RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=t3_case,t4_case,t6_case,t7_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=t3_case,t4_case,t6_case,t7_case,t9_case,t10_case:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTSYS4,EXTSYS5,EXTSYS9,EXTSYS10",RcopiaID=RCExtResponse.Response.PatientList.Patient.RcopiaID,,,,,,,,,,,
