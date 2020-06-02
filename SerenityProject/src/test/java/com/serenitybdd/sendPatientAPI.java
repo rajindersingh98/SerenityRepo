@@ -150,7 +150,7 @@ public class sendPatientAPI {
 								}
 							}
 						} finally {
-							DFDBConnection.closeConnection();
+							//DFDBConnection.closeConnection();
 						}
 					}
 
@@ -167,6 +167,7 @@ public class sendPatientAPI {
 	@After
 	public void tearDown() {
 		testcase++;
+		DFDBConnection.closeConnection();
 	}
 	public String getColumnValueToverify(String dbColumnValue) {
 
@@ -195,18 +196,7 @@ public class sendPatientAPI {
 		return query;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked"})
-	public Map getXmlVerificationMap(String[] xmlVerification) {
-		Map h = new HashMap();
-		for (int index = 0; index < xmlVerification.length; index++) {
-			String[] keyvalue = xmlVerification[index].split("=");
-			h.put(keyvalue[0], keyvalue[1]);
-		}
-		return h;
-	}
 	
-	
-
 	public String processTemplate(@SuppressWarnings("rawtypes") Map templateData) throws IOException {
 		Configuration cfg = new Configuration(new Version("2.3.23"));
 		cfg.setDefaultEncoding("UTF-8");
