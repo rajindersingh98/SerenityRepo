@@ -20,7 +20,7 @@ public class AddPracticeSteps {
 	    public Response submitRequest(String request, String testcaseName){
 		 res = SerenityRest.given().contentType(ContentType.XML).accept(ContentType.XML).body(request).post("https://register.qa.drfirst.com/ws/wsAddPractice");
 		 return res;
-	    }
+	 }
 	 
 	 @Step("Then Response has {0} Code/Text for path {1}")
 	    public void checkResponse(String responseString , String xPathForResponse){

@@ -21,7 +21,7 @@ xml=<RCExtRequest version="2.38">
 <PatientList>
 
 <Patient>
-           
+ <RcopiaID>${RcopiaID}</RcopiaID>
 ${ExternalIDSet}
 
 <PatientConsentToNotify>y</PatientConsentToNotify>

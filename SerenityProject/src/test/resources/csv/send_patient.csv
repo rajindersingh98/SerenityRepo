@@ -1,5 +1,5 @@
-Test Case ID,Scenario,Group,ExternalIDSet,FirstName,MiddleName,LastName,Deleted,DBVALIDATIONNEEDED,DB,QUERY,PARAMETERS,VERIFICATION,SYSTEMNAME1,SYSTEMNAME2,Status,,,,,,,,,,,,
-Scenario Defination,,AAA,,,,,,,,,,,,,,,,,,,,,,,,,
+Test Case ID,Scenario,Group,ExternalIDSet,FirstName,MiddleName,LastName,Deleted,DBVALIDATIONNEEDED,DB,QUERY,PARAMETERS,VERIFICATION,SYSTEMNAME1,SYSTEMNAME2,SYSTEMNAME3,Status,GetDataFromPreviousTest,RcopiaID,,,,,,,,,,
+Scenario Defination,,AAA,,,,,,,,,,,,,,,,,,,,,,,,,,
 DELETE_PATIENT_BEFORE_TEST_START,"1. Add Patient with one ExternalID
 2. Add one more ExternalID to Patient 
 3.Use ExternalID in Step 2 to Update the Patient
@@ -13,7 +13,7 @@ DELETE_PATIENT_BEFORE_TEST_START,"1. Add Patient with one ExternalID
                         <ExternalID>EXTSYS2</ExternalID>
                     </ExternalIdentifier>
 					</ExternalIdentifierList>
-                 ",Nautomation,NNI,Npatient,y,n,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
+                 ",Nautomation,NNI,Npatient,y,n,,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
 NEW_PATIENT_SINGLE_EXT_ID,"1. Add Patient with one ExternalID
 2. Add one more ExternalID to Patient 
 3.Use ExternalID in Step 2 to Update the Patient
@@ -35,7 +35,7 @@ PARAMETERSEP
 SEPERATOR
 {PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID","SYSTEM_NAME  TYPE STRING=SYSTEMNAME1
 SEPERATOR
-LAST_NAME TYPE STRING=LastName",sysautonew1,,"RCExtResponse.Response.PatientList.Patient.Status=created:
+LAST_NAME TYPE STRING=LastName",sysautonew1,,,"RCExtResponse.Response.PatientList.Patient.Status=created:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=sysautonew1",,,,,,,,,,,,
 ADD_NEW_EXTERNAL_ID_TO_PATIENT,"1. Add Patient with one ExternalID
 2. Add one more ExternalID to Patient 
@@ -74,7 +74,7 @@ SEPERATOR
 SEPERATOR
 SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
 SEPERATOR
-LAST_NAME TYPE STRING=LastName",sysautonew1,sysautonew2,RCExtResponse.Response.PatientList.Patient.Status=updated,,,,,,,,,,,,
+LAST_NAME TYPE STRING=LastName",sysautonew1,sysautonew2,,RCExtResponse.Response.PatientList.Patient.Status=updated,,,,,,,,,,,,
 USE_EXTID_TWO_TO_UPDATE_PATIENT,"1. Add Patient with one ExternalID
 2. Add one more ExternalID to Patient 
 3.Use ExternalID in Step 2 to Update the Patient
@@ -108,7 +108,7 @@ SEPERATOR
 SEPERATOR
 SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
 SEPERATOR
-LAST_NAME TYPE STRING=LastName",sysautonew1,sysautonew2,RCExtResponse.Response.PatientList.Patient.Status=updated,,,,,,,,,,,,
+LAST_NAME TYPE STRING=LastName",sysautonew1,sysautonew2,,RCExtResponse.Response.PatientList.Patient.Status=updated,,,,,,,,,,,,
 DELETE_PATIENT_AFTER_TEST_END,"1. Add Patient with one ExternalID
 2. Add one more ExternalID to Patient 
 3.Use ExternalID in Step 2 to Update the Patient
@@ -146,7 +146,7 @@ SEPERATOR
 SEPERATOR
 SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
 SEPERATOR
-LAST_NAME TYPE STRING=LastName",sysautonew1,sysautonew2,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
+LAST_NAME TYPE STRING=LastName",sysautonew1,sysautonew2,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
 DELETE_PATIENT_ONE_BEFORE_TEST,"1. Create Patient with ExternalID 
 2. Send Same Patient again and just update ExternalID,Keep SystemName same do not update anything else",AddPatient-NewPatientCreated_On_Changing_ExternalID_only,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
@@ -154,7 +154,7 @@ DELETE_PATIENT_ONE_BEFORE_TEST,"1. Create Patient with ExternalID
                         <ExternalID>EXTTEST1</ExternalID>
                     </ExternalIdentifier>
 </ExternalIdentifierList>
-				",newpatient,mpatient,lpatient,y,n,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
+				",newpatient,mpatient,lpatient,y,n,,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
 DELETE_PATIENT_TWO_BEFORE_TEST,"1. Create Patient with ExternalID 
 2. Send Same Patient again and just update ExternalID,Keep SystemName same do not update anything else",AddPatient-NewPatientCreated_On_Changing_ExternalID_only,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
@@ -162,7 +162,7 @@ DELETE_PATIENT_TWO_BEFORE_TEST,"1. Create Patient with ExternalID
                         <ExternalID>EXTTEST2</ExternalID>
                     </ExternalIdentifier>
 </ExternalIdentifierList>
-				",newpatient,mpatient,lpatient,y,n,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
+				",newpatient,mpatient,lpatient,y,n,,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
 CREATE_NEW_PATIENT_WITH_EXTERNAL_ID,"1. Create Patient with ExternalID 
 2. Send Same Patient again and just update ExternalID,Keep SystemName same do not update anything else",AddPatient-NewPatientCreated_On_Changing_ExternalID_only,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
@@ -170,7 +170,7 @@ CREATE_NEW_PATIENT_WITH_EXTERNAL_ID,"1. Create Patient with ExternalID
                         <ExternalID>EXTTEST1</ExternalID>
                     </ExternalIdentifier>
 </ExternalIdentifierList>
-				",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=created:
+				",newpatient,mpatient,lpatient,n,n,,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=created:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=test1:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTTEST1",,,,,,,,,,,,
 VERIFY_NEW_PATIENT_ID_CREATED_ON_CHANGING_EXTID_ONLY,"1. Create Patient with ExternalID 
@@ -180,7 +180,7 @@ VERIFY_NEW_PATIENT_ID_CREATED_ON_CHANGING_EXTID_ONLY,"1. Create Patient with Ext
                         <ExternalID>EXTTEST2</ExternalID>
                     </ExternalIdentifier>
 </ExternalIdentifierList>
-				",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=created:
+				",newpatient,mpatient,lpatient,n,n,,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=created:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=test1:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTTEST2",,,,,,,,,,,,
 DELETE_PATIENT_ONE,"1. Create Patient with ExternalID 
@@ -190,7 +190,7 @@ DELETE_PATIENT_ONE,"1. Create Patient with ExternalID
                         <ExternalID>EXTTEST1</ExternalID>
                     </ExternalIdentifier>
 </ExternalIdentifierList>
-				",newpatient,mpatient,lpatient,y,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=deleted:
+				",newpatient,mpatient,lpatient,y,n,,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=deleted:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=test1:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTTEST1",,,,,,,,,,,,
 DELETE_PATIENT_TWO,"1. Create Patient with ExternalID 
@@ -200,7 +200,7 @@ DELETE_PATIENT_TWO,"1. Create Patient with ExternalID
                         <ExternalID>EXTTEST2</ExternalID>
                     </ExternalIdentifier>
 </ExternalIdentifierList>
-				",newpatient,mpatient,lpatient,y,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=deleted:
+				",newpatient,mpatient,lpatient,y,n,,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=deleted:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=test1:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTTEST2",,,,,,,,,,,,
 WITHOUT_EXTERNAL_ID,1. Send_patient with ExternalIDSet missing ExternalID,WITHOUT_EXTERNAL_ID,"<ExternalIdentifierList>                
@@ -208,14 +208,14 @@ WITHOUT_EXTERNAL_ID,1. Send_patient with ExternalIDSet missing ExternalID,WITHOU
                         <SystemName>TEST1</SystemName>
                         <ExternalID></ExternalID>
                     </ExternalIdentifier>
-</ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
+</ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
 RCExtResponse.Response.PatientList.Patient.Error.Text=ExternalId cannot be empty in ExternalIdentifier.",,,,,,,,,,,,
 WITHOUT_SYSTEM_NAME,1. Send_patient with ExternalIDSet missing SystemName,WITHOUT_SYSTEM_NAME,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName></SystemName>
                         <ExternalID>EXTTEST1</ExternalID>
                     </ExternalIdentifier>
-</ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
+</ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
 RCExtResponse.Response.PatientList.Patient.Error.Text=SystemName cannot be empty in ExternalIdentifier.",,,,,,,,,,,,
 MULTIPLE_EXTERNAL_ID_SET_SYSTEMNAME_EMPTY,1. Send_patient with Multiple ExternalIDSet missing SystemName,MULTIPLE_EXTERNAL_ID_SET_SYSTEMNAME_EMPTY,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
@@ -230,9 +230,9 @@ MULTIPLE_EXTERNAL_ID_SET_SYSTEMNAME_EMPTY,1. Send_patient with Multiple External
                         <SystemName>dsasdda</SystemName>
                         <ExternalID>sadeqwe</ExternalID>
                     </ExternalIdentifier>
-</ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
+</ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
 RCExtResponse.Response.PatientList.Patient.Error.Text=SystemName cannot be empty in ExternalIdentifier.",,,,,,,,,,,,
-MULTIPLE_EXTERNAL_ID_SET_EXTERNAL_ID_EMPTY,1. Send_patient with Multiple ExternalIDSet missing ExternalID,MULTIPLE_EXTERNAL_ID_SET_EXTERNAL_ID_EMPTY,"<ExternalIdentifierList>                
+MULTIPLE_EXTERNAL_ID_SET_EXTERNAL_ID_EMPTY,1. Send_patient with Multiple ExternalIDSet missing ExternalID,MULTIPLE_EXTERNAL_ID_SET_EXTERNAL_ID_EMPTY_TEST,"<ExternalIdentifierList>                
                     	<ExternalIdentifier>
                         <SystemName>sadddaaaaad</SystemName>
                         <ExternalID>EXTTEST1</ExternalID>
@@ -245,8 +245,532 @@ MULTIPLE_EXTERNAL_ID_SET_EXTERNAL_ID_EMPTY,1. Send_patient with Multiple Externa
                         <SystemName>dsasdda</SystemName>
                         <ExternalID></ExternalID>
                     </ExternalIdentifier>
-</ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
+</ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
 RCExtResponse.Response.PatientList.Patient.Error.Text=ExternalId cannot be empty in ExternalIdentifier.",,,,,,,,,,,,
 EMPTY_EXTERNAL_ID_SET,1. Send_patient with Empty ExternalIDSet,EMPTY_EXTERNAL_ID_SET,"<ExternalIdentifierList>                
- </ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
+ </ExternalIdentifierList>",newpatient,mpatient,lpatient,n,n,,,,,,,,"RCExtResponse.Response.PatientList.Patient.Status=error:
 RCExtResponse.Response.PatientList.Patient.Error.Text=SystemName cannot be empty in ExternalIdentifier.",,,,,,,,,,,,
+DELETE_PAT_ONE_BEFORE_TEST_START,"1. Send_patient : New Patient with two sets on ExternalID/SystemName in ExternalIdentifierList (Automated)
+2. Update patient demographics and Send the same request as is Step 2 (NOT changing ExternalIdentifierList ) (Automated)
+3. Update patient demographics add one more ExternalID/SystemName set in ExternalIdentifierList along with what was there in Step 2
+4. Update patient demographics remove one ExternalID/SystemName set from ExternalIdentifierList  which was there in Step 3
+5. Keep same request as in Step 4 update ExternalIDs only, Keep same SystemName
+6. Keep same request as in Step 5 update SystemName only, Keep same ExternaLIds
+7. Keep same request as in Step 6 update SystemName and ExternaLIds both
+8. Update patient (LN,FN,DOB) in request for Step 7,  change 9. ExternalIDs only, Keep same SystemName and Send Patient RcopiaID from Step 7
+9. Update patient (LN,FN,DOB) in request for Step 7,  change ExternalIDs and  SystemName and Send Patient RcopiaID from Step 7
+10. Update patient (LN,FN,DOB) in request for Step 7,  change  SystemName, Keep ExternalID same and Send Patient RcopiaID from Step 7
+11. Update patient (LN,FN,DOB) in request for Step 10,  change  SystemName, Keep ExternalID same and DO NOT Send Patient RcopiaID from Step 10
+12. Update patient (LN,FN,DOB) in request for Step 11,  change  ExternalID , Keep SystemName same and DO NOT Send Patient RcopiaID from Step 11
+13. Update patient (LN,FN,DOB) in request for Step 12,  change  ExternalID  and SystemName both and DO NOT Send Patient RcopiaID from Step 1",MULTIPLE_EXTERNALIDS_CHANGING_SYSTEMNAME_EXTERNALID_UPDATE_ON_RCOPIAID,"<ExternalIdentifierList>                
+	<ExternalIdentifier>
+		<SystemName>T3_CASE</SystemName>
+		<ExternalID>EXTSYS4</ExternalID>
+	</ExternalIdentifier>
+	<ExternalIdentifier>
+		<SystemName>T4_CASE</SystemName>
+		<ExternalID>EXTSYS5</ExternalID>
+	</ExternalIdentifier>
+	</ExternalIdentifierList>
+                 ",NUUFNAME,NUUMNAME,NUULNAME,y,n,,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
+DELETE_PAT_TWO_BEFORE_TEST_START,"1. Send_patient : New Patient with two sets on ExternalID/SystemName in ExternalIdentifierList (Automated)
+2. Update patient demographics and Send the same request as is Step 2 (NOT changing ExternalIdentifierList ) (Automated)
+3. Update patient demographics add one more ExternalID/SystemName set in ExternalIdentifierList along with what was there in Step 2
+4. Update patient demographics remove one ExternalID/SystemName set from ExternalIdentifierList  which was there in Step 3
+5. Keep same request as in Step 4 update ExternalIDs only, Keep same SystemName
+6. Keep same request as in Step 5 update SystemName only, Keep same ExternaLIds
+7. Keep same request as in Step 6 update SystemName and ExternaLIds both
+8. Update patient (LN,FN,DOB) in request for Step 7,  change 9. ExternalIDs only, Keep same SystemName and Send Patient RcopiaID from Step 7
+9. Update patient (LN,FN,DOB) in request for Step 7,  change ExternalIDs and  SystemName and Send Patient RcopiaID from Step 7
+10. Update patient (LN,FN,DOB) in request for Step 7,  change  SystemName, Keep ExternalID same and Send Patient RcopiaID from Step 7
+11. Update patient (LN,FN,DOB) in request for Step 10,  change  SystemName, Keep ExternalID same and DO NOT Send Patient RcopiaID from Step 10
+12. Update patient (LN,FN,DOB) in request for Step 11,  change  ExternalID , Keep SystemName same and DO NOT Send Patient RcopiaID from Step 11
+13. Update patient (LN,FN,DOB) in request for Step 12,  change  ExternalID  and SystemName both and DO NOT Send Patient RcopiaID from Step 1",MULTIPLE_EXTERNALIDS_CHANGING_SYSTEMNAME_EXTERNALID_UPDATE_ON_RCOPIAID,"<ExternalIdentifierList>                
+	<ExternalIdentifier>
+		<SystemName>T3_CASE</SystemName>
+		<ExternalID>EXTSYS1</ExternalID>
+	</ExternalIdentifier>
+	<ExternalIdentifier>
+		<SystemName>T4_CASE</SystemName>
+		<ExternalID>EXTSYS2</ExternalID>
+	</ExternalIdentifier>
+</ExternalIdentifierList>
+                 ",FNAME,MNAME,LNAME,y,n,,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,,,,,,,,,
+CREATE_PATIENT_WITH_TWO_EXTERNAL_ID,"1. Send_patient : New Patient with two sets on ExternalID/SystemName in ExternalIdentifierList (Automated)
+2. Update patient demographics and Send the same request as is Step 2 (NOT changing ExternalIdentifierList ) (Automated)
+3. Update patient demographics add one more ExternalID/SystemName set in ExternalIdentifierList along with what was there in Step 2
+4. Update patient demographics remove one ExternalID/SystemName set from ExternalIdentifierList  which was there in Step 3
+5. Keep same request as in Step 4 update ExternalIDs only, Keep same SystemName
+6. Keep same request as in Step 5 update SystemName only, Keep same ExternaLIds
+7. Keep same request as in Step 6 update SystemName and ExternaLIds both
+8. Update patient (LN,FN,DOB) in request for Step 7,  change 9. ExternalIDs only, Keep same SystemName and Send Patient RcopiaID from Step 7
+9. Update patient (LN,FN,DOB) in request for Step 7,  change ExternalIDs and  SystemName and Send Patient RcopiaID from Step 7
+10. Update patient (LN,FN,DOB) in request for Step 7,  change  SystemName, Keep ExternalID same and Send Patient RcopiaID from Step 7
+11. Update patient (LN,FN,DOB) in request for Step 10,  change  SystemName, Keep ExternalID same and DO NOT Send Patient RcopiaID from Step 10
+12. Update patient (LN,FN,DOB) in request for Step 11,  change  ExternalID , Keep SystemName same and DO NOT Send Patient RcopiaID from Step 11
+13. Update patient (LN,FN,DOB) in request for Step 12,  change  ExternalID  and SystemName both and DO NOT Send Patient RcopiaID from Step 1",MULTIPLE_EXTERNALIDS_CHANGING_SYSTEMNAME_EXTERNALID_UPDATE_ON_RCOPIAID,"<ExternalIdentifierList>                
+	<ExternalIdentifier>
+		<SystemName>T3_CASE</SystemName>
+		<ExternalID>EXTSYS1</ExternalID>
+	</ExternalIdentifier>
+	<ExternalIdentifier>
+		<SystemName>T4_CASE</SystemName>
+		<ExternalID>EXTSYS2</ExternalID>
+	</ExternalIdentifier>
+</ExternalIdentifierList>
+                 ",FNAME,MNAME,LNAME,n,y,"QA2MAIN
+SEPERATOR
+QA2MAIN
+SEPERATOR
+QA2MAIN","Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from patients where patient_id = {PATIENTID} and deleted='n'","{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[0]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[0]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[1]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[1]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID","SYSTEM_NAME  TYPE STRING=SYSTEMNAME1
+SEPERATOR
+SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
+SEPERATOR
+LAST_NAME TYPE STRING=LastName",t3_case,t4_case,,"RCExtResponse.Response.PatientList.Patient.Status=created:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=t3_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTSYS1:
+RCExtResponse.Response.PatientList.Patient.Status=created:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=t4_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTSYS2",,,,,,,,,,,,
+UPDATE_PATIENT_TWO_EXTERNAL_ID,"1. Send_patient : New Patient with two sets on ExternalID/SystemName in ExternalIdentifierList (Automated)
+2. Update patient demographics and Send the same request as is Step 2 (NOT changing ExternalIdentifierList ) (Automated)
+3. Update patient demographics add one more ExternalID/SystemName set in ExternalIdentifierList along with what was there in Step 2
+4. Update patient demographics remove one ExternalID/SystemName set from ExternalIdentifierList  which was there in Step 3
+5. Keep same request as in Step 4 update ExternalIDs only, Keep same SystemName
+6. Keep same request as in Step 5 update SystemName only, Keep same ExternaLIds
+7. Keep same request as in Step 6 update SystemName and ExternaLIds both
+8. Update patient (LN,FN,DOB) in request for Step 7,  change 9. ExternalIDs only, Keep same SystemName and Send Patient RcopiaID from Step 7
+9. Update patient (LN,FN,DOB) in request for Step 7,  change ExternalIDs and  SystemName and Send Patient RcopiaID from Step 7
+10. Update patient (LN,FN,DOB) in request for Step 7,  change  SystemName, Keep ExternalID same and Send Patient RcopiaID from Step 7
+11. Update patient (LN,FN,DOB) in request for Step 10,  change  SystemName, Keep ExternalID same and DO NOT Send Patient RcopiaID from Step 10
+12. Update patient (LN,FN,DOB) in request for Step 11,  change  ExternalID , Keep SystemName same and DO NOT Send Patient RcopiaID from Step 11
+13. Update patient (LN,FN,DOB) in request for Step 12,  change  ExternalID  and SystemName both and DO NOT Send Patient RcopiaID from Step 1",MULTIPLE_EXTERNALIDS_CHANGING_SYSTEMNAME_EXTERNALID_UPDATE_ON_RCOPIAID,"<ExternalIdentifierList>                
+	<ExternalIdentifier>
+		<SystemName>T3_CASE</SystemName>
+		<ExternalID>EXTSYS1</ExternalID>
+	</ExternalIdentifier>
+	<ExternalIdentifier>
+		<SystemName>T4_CASE</SystemName>
+		<ExternalID>EXTSYS2</ExternalID>
+	</ExternalIdentifier>
+</ExternalIdentifierList>
+                 ",UFNAME,UMNAME,ULNAME,n,y,"QA2MAIN
+SEPERATOR
+QA2MAIN
+SEPERATOR
+QA2MAIN","Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from patients where patient_id = {PATIENTID} and deleted='n'","{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[0]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[0]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[1]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[1]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID","SYSTEM_NAME  TYPE STRING=SYSTEMNAME1
+SEPERATOR
+SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
+SEPERATOR
+LAST_NAME TYPE STRING=LastName
+VERIFICATIONSEP
+FIRST_NAME TYPE STRING=FirstName
+VERIFICATIONSEP
+MIDDLE_INITIAL TYPE STRING=MiddleName",t3_case,t4_case,,"RCExtResponse.Response.PatientList.Patient.Status=updated:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[0]=t3_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[0]=EXTSYS1:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[1]=t4_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[1]=EXTSYS2",,,,,,,,,,,,
+UPDATE_PATIENT_ADD_ONE_MORE_EXTERNAL_ID,"1. Send_patient : New Patient with two sets on ExternalID/SystemName in ExternalIdentifierList (Automated)
+2. Update patient demographics and Send the same request as is Step 2 (NOT changing ExternalIdentifierList ) (Automated)
+3. Update patient demographics add one more ExternalID/SystemName set in ExternalIdentifierList along with what was there in Step 2
+4. Update patient demographics remove one ExternalID/SystemName set from ExternalIdentifierList  which was there in Step 3
+5. Keep same request as in Step 4 update ExternalIDs only, Keep same SystemName
+6. Keep same request as in Step 5 update SystemName only, Keep same ExternaLIds
+7. Keep same request as in Step 6 update SystemName and ExternaLIds both
+8. Update patient (LN,FN,DOB) in request for Step 7,  change 9. ExternalIDs only, Keep same SystemName and Send Patient RcopiaID from Step 7
+9. Update patient (LN,FN,DOB) in request for Step 7,  change ExternalIDs and  SystemName and Send Patient RcopiaID from Step 7
+10. Update patient (LN,FN,DOB) in request for Step 7,  change  SystemName, Keep ExternalID same and Send Patient RcopiaID from Step 7
+11. Update patient (LN,FN,DOB) in request for Step 10,  change  SystemName, Keep ExternalID same and DO NOT Send Patient RcopiaID from Step 10
+12. Update patient (LN,FN,DOB) in request for Step 11,  change  ExternalID , Keep SystemName same and DO NOT Send Patient RcopiaID from Step 11
+13. Update patient (LN,FN,DOB) in request for Step 12,  change  ExternalID  and SystemName both and DO NOT Send Patient RcopiaID from Step 1",MULTIPLE_EXTERNALIDS_CHANGING_SYSTEMNAME_EXTERNALID_UPDATE_ON_RCOPIAID,"<ExternalIdentifierList>                
+	<ExternalIdentifier>
+		<SystemName>T3_CASE</SystemName>
+		<ExternalID>EXTSYS1</ExternalID>
+	</ExternalIdentifier>
+	<ExternalIdentifier>
+		<SystemName>T4_CASE</SystemName>
+		<ExternalID>EXTSYS2</ExternalID>
+	</ExternalIdentifier>
+	<ExternalIdentifier>
+		<SystemName>T5_CASE</SystemName>
+		<ExternalID>EXTSYS3</ExternalID>
+	</ExternalIdentifier>
+</ExternalIdentifierList>
+                 ",UUFNAME,UUMNAME,UULNAME,n,y,"QA2MAIN
+SEPERATOR
+QA2MAIN
+SEPERATOR
+QA2MAIN
+SEPERATOR
+QA2MAIN","Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from patients where patient_id = {PATIENTID} and deleted='n'","{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[0]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[0]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[1]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[1]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[2]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[2]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID","SYSTEM_NAME  TYPE STRING=SYSTEMNAME1
+SEPERATOR
+SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
+SEPERATOR
+SYSTEM_NAME  TYPE STRING=SYSTEMNAME3
+SEPERATOR
+LAST_NAME TYPE STRING=LastName
+VERIFICATIONSEP
+FIRST_NAME TYPE STRING=FirstName
+VERIFICATIONSEP
+MIDDLE_INITIAL TYPE STRING=MiddleName",t3_case,t4_case,t5_case,"RCExtResponse.Response.PatientList.Patient.Status=updated:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[0]=t3_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[0]=EXTSYS1:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[1]=t4_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[1]=EXTSYS2:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[2]=t5_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[2]=EXTSYS3",,,,,,,,,,,,
+UPDATE_PATIENT_REMOVE_ONE_EXTERNAL_ID_PREVIOUS_STEP,"1. Send_patient : New Patient with two sets on ExternalID/SystemName in ExternalIdentifierList (Automated)
+2. Update patient demographics and Send the same request as is Step 2 (NOT changing ExternalIdentifierList ) (Automated)
+3. Update patient demographics add one more ExternalID/SystemName set in ExternalIdentifierList along with what was there in Step 2
+4. Update patient demographics remove one ExternalID/SystemName set from ExternalIdentifierList  which was there in Step 3
+5. Keep same request as in Step 4 update ExternalIDs only, Keep same SystemName
+6. Keep same request as in Step 5 update SystemName only, Keep same ExternaLIds
+7. Keep same request as in Step 6 update SystemName and ExternaLIds both
+8. Update patient (LN,FN,DOB) in request for Step 7,  change 9. ExternalIDs only, Keep same SystemName and Send Patient RcopiaID from Step 7
+9. Update patient (LN,FN,DOB) in request for Step 7,  change ExternalIDs and  SystemName and Send Patient RcopiaID from Step 7
+10. Update patient (LN,FN,DOB) in request for Step 7,  change  SystemName, Keep ExternalID same and Send Patient RcopiaID from Step 7
+11. Update patient (LN,FN,DOB) in request for Step 10,  change  SystemName, Keep ExternalID same and DO NOT Send Patient RcopiaID from Step 10
+12. Update patient (LN,FN,DOB) in request for Step 11,  change  ExternalID , Keep SystemName same and DO NOT Send Patient RcopiaID from Step 11
+13. Update patient (LN,FN,DOB) in request for Step 12,  change  ExternalID  and SystemName both and DO NOT Send Patient RcopiaID from Step 1",MULTIPLE_EXTERNALIDS_CHANGING_SYSTEMNAME_EXTERNALID_UPDATE_ON_RCOPIAID,"<ExternalIdentifierList>                
+	<ExternalIdentifier>
+		<SystemName>T3_CASE</SystemName>
+		<ExternalID>EXTSYS1</ExternalID>
+	</ExternalIdentifier>
+	<ExternalIdentifier>
+		<SystemName>T4_CASE</SystemName>
+		<ExternalID>EXTSYS2</ExternalID>
+	</ExternalIdentifier>
+	</ExternalIdentifierList>
+                 ",NUUFNAME,NUUMNAME,NUULNAME,n,y,"QA2MAIN
+SEPERATOR
+QA2MAIN
+SEPERATOR
+QA2MAIN
+SEPERATOR
+QA2MAIN","Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from patients where patient_id = {PATIENTID} and deleted='n'","{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[0]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[0]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[1]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[1]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[2]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[2]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID","SYSTEM_NAME  TYPE STRING=SYSTEMNAME1
+SEPERATOR
+SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
+SEPERATOR
+SYSTEM_NAME  TYPE STRING=SYSTEMNAME3
+SEPERATOR
+LAST_NAME TYPE STRING=LastName
+VERIFICATIONSEP
+FIRST_NAME TYPE STRING=FirstName
+VERIFICATIONSEP
+MIDDLE_INITIAL TYPE STRING=MiddleName",t3_case,t4_case,t5_case,"RCExtResponse.Response.PatientList.Patient.Status=updated:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[0]=t3_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[0]=EXTSYS1:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[1]=t4_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[1]=EXTSYS2:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[2]=t5_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[2]=EXTSYS3",,,,,,,,,,,,
+CHANGE_EXTERNAL_ID_KEEP_SAME_SYSTEMNAME_CREATE_PATIENT,"1. Send_patient : New Patient with two sets on ExternalID/SystemName in ExternalIdentifierList (Automated)
+2. Update patient demographics and Send the same request as is Step 2 (NOT changing ExternalIdentifierList ) (Automated)
+3. Update patient demographics add one more ExternalID/SystemName set in ExternalIdentifierList along with what was there in Step 2
+4. Update patient demographics remove one ExternalID/SystemName set from ExternalIdentifierList  which was there in Step 3
+5. Keep same request as in Step 4 update ExternalIDs only, Keep same SystemName
+6. Keep same request as in Step 5 update SystemName only, Keep same ExternaLIds
+7. Keep same request as in Step 6 update SystemName and ExternaLIds both
+8. Update patient (LN,FN,DOB) in request for Step 7,  change 9. ExternalIDs only, Keep same SystemName and Send Patient RcopiaID from Step 7
+9. Update patient (LN,FN,DOB) in request for Step 7,  change ExternalIDs and  SystemName and Send Patient RcopiaID from Step 7
+10. Update patient (LN,FN,DOB) in request for Step 7,  change  SystemName, Keep ExternalID same and Send Patient RcopiaID from Step 7
+11. Update patient (LN,FN,DOB) in request for Step 10,  change  SystemName, Keep ExternalID same and DO NOT Send Patient RcopiaID from Step 10
+12. Update patient (LN,FN,DOB) in request for Step 11,  change  ExternalID , Keep SystemName same and DO NOT Send Patient RcopiaID from Step 11
+13. Update patient (LN,FN,DOB) in request for Step 12,  change  ExternalID  and SystemName both and DO NOT Send Patient RcopiaID from Step 1",MULTIPLE_EXTERNALIDS_CHANGING_SYSTEMNAME_EXTERNALID_UPDATE_ON_RCOPIAID,"<ExternalIdentifierList>                
+	<ExternalIdentifier>
+		<SystemName>T3_CASE</SystemName>
+		<ExternalID>EXTSYS4</ExternalID>
+	</ExternalIdentifier>
+	<ExternalIdentifier>
+		<SystemName>T4_CASE</SystemName>
+		<ExternalID>EXTSYS5</ExternalID>
+	</ExternalIdentifier>
+	</ExternalIdentifierList>
+                 ",NUUFNAME,NUUMNAME,NUULNAME,n,y,"QA2MAIN
+SEPERATOR
+QA2MAIN
+SEPERATOR
+QA2MAIN","Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from patients where patient_id = {PATIENTID} and deleted='n'","{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[0]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[0]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[1]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[1]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID","SYSTEM_NAME  TYPE STRING=SYSTEMNAME1
+SEPERATOR
+SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
+SEPERATOR
+LAST_NAME TYPE STRING=LastName
+VERIFICATIONSEP
+FIRST_NAME TYPE STRING=FirstName
+VERIFICATIONSEP
+MIDDLE_INITIAL TYPE STRING=MiddleName",t3_case,t4_case,,"RCExtResponse.Response.PatientList.Patient.Status=created:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[0]=t3_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[0]=EXTSYS4:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[1]=t4_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[1]=EXTSYS5",,,,,,,,,,,,
+UPDATE_PATIENT_ABOVE,"1. Send_patient : New Patient with two sets on ExternalID/SystemName in ExternalIdentifierList (Automated)
+2. Update patient demographics and Send the same request as is Step 2 (NOT changing ExternalIdentifierList ) (Automated)
+3. Update patient demographics add one more ExternalID/SystemName set in ExternalIdentifierList along with what was there in Step 2
+4. Update patient demographics remove one ExternalID/SystemName set from ExternalIdentifierList  which was there in Step 3
+5. Keep same request as in Step 4 update ExternalIDs only, Keep same SystemName
+6. Keep same request as in Step 5 update SystemName only, Keep same ExternaLIds
+7. Keep same request as in Step 6 update SystemName and ExternaLIds both
+8. Update patient (LN,FN,DOB) in request for Step 7,  change 9. ExternalIDs only, Keep same SystemName and Send Patient RcopiaID from Step 7
+9. Update patient (LN,FN,DOB) in request for Step 7,  change ExternalIDs and  SystemName and Send Patient RcopiaID from Step 7
+10. Update patient (LN,FN,DOB) in request for Step 7,  change  SystemName, Keep ExternalID same and Send Patient RcopiaID from Step 7
+11. Update patient (LN,FN,DOB) in request for Step 10,  change  SystemName, Keep ExternalID same and DO NOT Send Patient RcopiaID from Step 10
+12. Update patient (LN,FN,DOB) in request for Step 11,  change  ExternalID , Keep SystemName same and DO NOT Send Patient RcopiaID from Step 11
+13. Update patient (LN,FN,DOB) in request for Step 12,  change  ExternalID  and SystemName both and DO NOT Send Patient RcopiaID from Step 1",MULTIPLE_EXTERNALIDS_CHANGING_SYSTEMNAME_EXTERNALID_UPDATE_ON_RCOPIAID,"<ExternalIdentifierList>                
+	<ExternalIdentifier>
+		<SystemName>T3_CASE</SystemName>
+		<ExternalID>EXTSYS4</ExternalID>
+	</ExternalIdentifier>
+	<ExternalIdentifier>
+		<SystemName>T4_CASE</SystemName>
+		<ExternalID>EXTSYS5</ExternalID>
+	</ExternalIdentifier>
+	</ExternalIdentifierList>
+                 ",NEWNAME,NEWNAMEM,NEWNAMEL,n,N,,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=updated,,,,,,,,,,,,
+CHANGE_SYSTEMNAME_KEEP_SAME_EXTERNALID_MATCHES_PATIENT,"1. Send_patient : New Patient with two sets on ExternalID/SystemName in ExternalIdentifierList (Automated)
+2. Update patient demographics and Send the same request as is Step 2 (NOT changing ExternalIdentifierList ) (Automated)
+3. Update patient demographics add one more ExternalID/SystemName set in ExternalIdentifierList along with what was there in Step 2
+4. Update patient demographics remove one ExternalID/SystemName set from ExternalIdentifierList  which was there in Step 3
+5. Keep same request as in Step 4 update ExternalIDs only, Keep same SystemName
+6. Keep same request as in Step 5 update SystemName only, Keep same ExternaLIds, Patient macthces as in Step 4
+7. Keep same request as in Step 6 update SystemName and ExternaLIds both
+8. Update patient (LN,FN,DOB) in request for Step 7,  change 9. ExternalIDs only, Keep same SystemName and Send Patient RcopiaID from Step 7
+9. Update patient (LN,FN,DOB) in request for Step 7,  change ExternalIDs and  SystemName and Send Patient RcopiaID from Step 7
+10. Update patient (LN,FN,DOB) in request for Step 7,  change  SystemName, Keep ExternalID same and Send Patient RcopiaID from Step 7
+11. Update patient (LN,FN,DOB) in request for Step 10,  change  SystemName, Keep ExternalID same and DO NOT Send Patient RcopiaID from Step 10
+12. Update patient (LN,FN,DOB) in request for Step 11,  change  ExternalID , Keep SystemName same and DO NOT Send Patient RcopiaID from Step 11
+13. Update patient (LN,FN,DOB) in request for Step 12,  change  ExternalID  and SystemName both and DO NOT Send Patient RcopiaID from Step 1",MULTIPLE_EXTERNALIDS_CHANGING_SYSTEMNAME_EXTERNALID_UPDATE_ON_RCOPIAID,"<ExternalIdentifierList>                
+	<ExternalIdentifier>
+		<SystemName>T6_CASE</SystemName>
+		<ExternalID>EXTSYS4</ExternalID>
+	</ExternalIdentifier>
+	<ExternalIdentifier>
+		<SystemName>T7_CASE</SystemName>
+		<ExternalID>EXTSYS5</ExternalID>
+	</ExternalIdentifier>
+	</ExternalIdentifierList>
+                 ",NEWNAME,NEWNAMEM,NEWNAMEL,n,y,"QA2MAIN
+SEPERATOR
+QA2MAIN
+SEPERATOR
+QA2MAIN","Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='{EXTERNALID}' and system_name = '{SYSTEMNAME}' and deleted='n'
+SEPERATOR
+Select * from patients where patient_id = {PATIENTID} and deleted='n'","{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[0]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[0]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[1]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[1]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID","SYSTEM_NAME  TYPE STRING=SYSTEMNAME1
+SEPERATOR
+SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
+SEPERATOR
+LAST_NAME TYPE STRING=LastName
+VERIFICATIONSEP
+FIRST_NAME TYPE STRING=FirstName
+VERIFICATIONSEP
+MIDDLE_INITIAL TYPE STRING=MiddleName",t3_case,t4_case,,"RCExtResponse.Response.PatientList.Patient.Status=updated:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=t3_case,t4_case,t6_case,t7_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTSYS4,EXTSYS5",,,,,,,,,,,,
+CHANGE_EXTERNALID_KEEP_PATIENT_RCOPIAID,"1. Send_patient : New Patient with two sets on ExternalID/SystemName in ExternalIdentifierList (Automated)
+2. Update patient demographics and Send the same request as is Step 2 (NOT changing ExternalIdentifierList ) (Automated)
+3. Update patient demographics add one more ExternalID/SystemName set in ExternalIdentifierList along with what was there in Step 2
+4. Update patient demographics remove one ExternalID/SystemName set from ExternalIdentifierList  which was there in Step 3
+5. Keep same request as in Step 4 update ExternalIDs only, Keep same SystemName
+6. Keep same request as in Step 5 update SystemName only, Keep same ExternaLIds, Patient macthces as in Step 4
+7. Keep same request as in Step 6 update SystemName and ExternaLIds both
+8. Update patient (LN,FN,DOB) in request for Step 7,  change 9. ExternalIDs only, Keep same SystemName and Send Patient RcopiaID from Step 7
+9. Update patient (LN,FN,DOB) in request for Step 7,  change ExternalIDs and  SystemName and Send Patient RcopiaID from Step 7
+10. Update patient (LN,FN,DOB) in request for Step 7,  change  SystemName, Keep ExternalID same and Send Patient RcopiaID from Step 7
+11. Update patient (LN,FN,DOB) in request for Step 10,  change  SystemName, Keep ExternalID same and DO NOT Send Patient RcopiaID from Step 10
+12. Update patient (LN,FN,DOB) in request for Step 11,  change  ExternalID , Keep SystemName same and DO NOT Send Patient RcopiaID from Step 11
+13. Update patient (LN,FN,DOB) in request for Step 12,  change  ExternalID  and SystemName both and DO NOT Send Patient RcopiaID from Step 1",MULTIPLE_EXTERNALIDS_CHANGING_SYSTEMNAME_EXTERNALID_UPDATE_ON_RCOPIAID,"<ExternalIdentifierList>                
+	<ExternalIdentifier>
+		<SystemName>T6_CASE</SystemName>
+		<ExternalID>EXTSYS9</ExternalID>
+	</ExternalIdentifier>
+	<ExternalIdentifier>
+		<SystemName>T7_CASE</SystemName>
+		<ExternalID>EXTSYS10</ExternalID>
+	</ExternalIdentifier>
+	</ExternalIdentifierList>
+                 ",NEWNAME,NEWNAMEM,NEWNAMEL,n,y,"QA2MAIN
+SEPERATOR
+QA2MAIN
+SEPERATOR
+QA2MAIN","Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='EXTSYS9' and system_name = 't6_case' and deleted='n'
+SEPERATOR
+Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='EXTSYS10' and system_name = 't7_case' and deleted='n'
+SEPERATOR
+Select * from patients where patient_id = {PATIENTID} and deleted='n'","{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID","SYSTEM_NAME  TYPE STRING=SYSTEMNAME1
+SEPERATOR
+SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
+SEPERATOR
+LAST_NAME TYPE STRING=LastName
+VERIFICATIONSEP
+FIRST_NAME TYPE STRING=FirstName
+VERIFICATIONSEP
+MIDDLE_INITIAL TYPE STRING=MiddleName",t6_case,t7_case,,"RCExtResponse.Response.PatientList.Patient.Status=updated:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=t3_case,t4_case,t6_case,t7_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTSYS4,EXTSYS5,EXTSYS9,EXTSYS10",RcopiaID=RCExtResponse.Response.PatientList.Patient.RcopiaID,,,,,,,,,,,
+CHANGE_SYSTEMNAME_KEEP_PATIENT_RCOPIAID,"1. Send_patient : New Patient with two sets on ExternalID/SystemName in ExternalIdentifierList (Automated)
+2. Update patient demographics and Send the same request as is Step 2 (NOT changing ExternalIdentifierList ) (Automated)
+3. Update patient demographics add one more ExternalID/SystemName set in ExternalIdentifierList along with what was there in Step 2
+4. Update patient demographics remove one ExternalID/SystemName set from ExternalIdentifierList  which was there in Step 3
+5. Keep same request as in Step 4 update ExternalIDs only, Keep same SystemName
+6. Keep same request as in Step 5 update SystemName only, Keep same ExternaLIds, Patient macthces as in Step 4
+7. Keep same request as in Step 6 update SystemName and ExternaLIds both
+8. Update patient (LN,FN,DOB) in request for Step 7,  change 9. ExternalIDs only, Keep same SystemName and Send Patient RcopiaID from Step 7
+9. Update patient (LN,FN,DOB) in request for Step 7,  change ExternalIDs and  SystemName and Send Patient RcopiaID from Step 7
+10. Update patient (LN,FN,DOB) in request for Step 7,  change  SystemName, Keep ExternalID same and Send Patient RcopiaID from Step 7
+11. Update patient (LN,FN,DOB) in request for Step 10,  change  SystemName, Keep ExternalID same and DO NOT Send Patient RcopiaID from Step 10
+12. Update patient (LN,FN,DOB) in request for Step 11,  change  ExternalID , Keep SystemName same and DO NOT Send Patient RcopiaID from Step 11
+13. Update patient (LN,FN,DOB) in request for Step 12,  change  ExternalID  and SystemName both and DO NOT Send Patient RcopiaID from Step 1",MULTIPLE_EXTERNALIDS_CHANGING_SYSTEMNAME_EXTERNALID_UPDATE_ON_RCOPIAID,"<ExternalIdentifierList>                
+	<ExternalIdentifier>
+		<SystemName>T9_CASE</SystemName>
+		<ExternalID>EXTSYS9</ExternalID>
+	</ExternalIdentifier>
+	<ExternalIdentifier>
+		<SystemName>T10_CASE</SystemName>
+		<ExternalID>EXTSYS10</ExternalID>
+	</ExternalIdentifier>
+	</ExternalIdentifierList>
+                 ",NEWNAME,NEWNAMEM,NEWNAMEL,n,y,"QA2MAIN
+SEPERATOR
+QA2MAIN
+SEPERATOR
+QA2MAIN","Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='EXTSYS9' and system_name = 't9_case' and deleted='n'
+SEPERATOR
+Select * from rcopia_xref where  rcopia_id= {PATIENTID} and External_ID='EXTSYS10' and system_name = 't10_case' and deleted='n'
+SEPERATOR
+Select * from patients where patient_id = {PATIENTID} and deleted='n'","{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[0]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[0]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID
+PARAMETERSEP
+{EXTERNALID}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID[1]
+PARAMETERSEP
+{SYSTEMNAME}=RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName[1]
+SEPERATOR
+{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID","SYSTEM_NAME  TYPE STRING=SYSTEMNAME1
+SEPERATOR
+SYSTEM_NAME  TYPE STRING=SYSTEMNAME2
+SEPERATOR
+LAST_NAME TYPE STRING=LastName
+VERIFICATIONSEP
+FIRST_NAME TYPE STRING=FirstName
+VERIFICATIONSEP
+MIDDLE_INITIAL TYPE STRING=MiddleName",t9_case,t10_case,,"RCExtResponse.Response.PatientList.Patient.Status=updated:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=t3_case,t4_case,t6_case,t7_case:
+RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.ExternalID=EXTSYS4,EXTSYS5,EXTSYS9,EXTSYS10",RcopiaID=RCExtResponse.Response.PatientList.Patient.RcopiaID,,,,,,,,,,,

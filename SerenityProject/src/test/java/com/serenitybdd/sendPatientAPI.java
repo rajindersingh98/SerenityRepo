@@ -1,5 +1,7 @@
 package com.serenitybdd;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,6 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -83,44 +88,47 @@ public class sendPatientAPI {
 
 	@Test
 	public void sendPatientExternalIDSetTests() throws IOException, SQLException {
-
+		String responseAsString  = null;
 		List<Map<String, String>> numberOfStepsInGroup = listOfTestcases.get(testcase);
 		for (int i = 0; i < numberOfStepsInGroup.size(); i++) {
 			@SuppressWarnings("rawtypes")
 			Map m = numberOfStepsInGroup.get(i);
+			if(!m.get("GetDataFromPreviousTest").equals("")) {
+				String dataNeededFromPreviousTest[] = m.get("GetDataFromPreviousTest").toString().split("=");
+				String dataKey = dataNeededFromPreviousTest[0];
+				String dataValue = XmlPath.from(responseAsString).get(dataNeededFromPreviousTest[1]);
+				m.put(dataKey, dataValue);
+			}
 			if(m.get("Test Case ID").equals("Scenario Defination")) {
 				addMedicationSteps.scenario();
 			}
 			else {
+				if(m.get("Test Case ID").equals("WITHOUT_EXTERNAL_ID")) {
+					System.out.println("HI");
+				}
 			request = processTemplate(m);
-
-			Response response = addMedicationSteps.submitRequest(request, m.get("Test Case ID").toString());
-
+			Response r = addMedicationSteps.submitRequest(request, m.get("Test Case ID").toString());
+			responseAsString = r.asString();
+			
 			/////// Xpath Verification in Response:
-			@SuppressWarnings("rawtypes")
-			Map xmlVerificationMap = getXmlVerificationMap(m.get("Status").toString().split(":"));
-			@SuppressWarnings("rawtypes")
-			Iterator xmlVerificationEntries = xmlVerificationMap.entrySet().iterator();
-
-			while (xmlVerificationEntries.hasNext()) {
-				@SuppressWarnings("rawtypes")
-				Map.Entry thisEntry = (Map.Entry) xmlVerificationEntries.next();
-				String key = thisEntry.getKey().toString();
-				String value = thisEntry.getValue().toString();
-				addMedicationSteps.checkResponse(value, key);
+			
+			String verificationMap[] = m.get("Status").toString().split(":");
+			for(int indexVerificationMap = 0; indexVerificationMap < verificationMap.length ; indexVerificationMap++) {
+				addMedicationSteps.checkResponse(r, verificationMap[indexVerificationMap].split("=")[1], verificationMap[indexVerificationMap].split("=")[0]);
+			
 			}
+			
 
 			///////////////////////////////////
 			////////////////////////////////////////////////////////////////////////////////////
 			// DB Validation
-			System.out.println("templateData.get(\"DBVALIDATIONNEEDED\")   " + m.get("DBVALIDATIONNEEDED"));
 			if ("y".equals(m.get("DBVALIDATIONNEEDED"))) {
 				String dBValidation[] = m.get("DB").toString().split("SEPERATOR");
 				String queries[] = m.get("QUERY").toString().split("SEPERATOR");
 				String parameters[] = m.get("PARAMETERS").toString().split("SEPERATOR");
 				String verification[] = m.get("VERIFICATION").toString().split("SEPERATOR");
 				for (int indexdBValidation = 0; indexdBValidation < dBValidation.length; indexdBValidation++) {
-					String finalQuery = finalQuery(response, queries[indexdBValidation].trim(),
+					String finalQuery = finalQuery(responseAsString, queries[indexdBValidation].trim(),
 							parameters[indexdBValidation].trim());
 					String dbColumnValue[] = verification[indexdBValidation].split("VERIFICATIONSEP");
 					for (int indexDbColumnValue = 0; indexDbColumnValue < dbColumnValue.length; indexDbColumnValue++) {
@@ -153,9 +161,13 @@ public class sendPatientAPI {
 			///////////////////////////////////////////////////////////////////////////
 		  }
 		}
-		testcase++;
+		
 	}
 
+	@After
+	public void tearDown() {
+		testcase++;
+	}
 	public String getColumnValueToverify(String dbColumnValue) {
 
 		return dbColumnValue.split("=")[1].trim();
@@ -172,12 +184,12 @@ public class sendPatientAPI {
 
 	}
 
-	public String finalQuery(Response response, String query, String parameters) {
+	public String finalQuery(String response, String query, String parameters) {
 		String parametersArray[] = parameters.split("PARAMETERSEP");
 		for (int indexParametersArray = 0; indexParametersArray < parametersArray.length; indexParametersArray++) {
 			String parameterAndValueArray[] = parametersArray[indexParametersArray].split("=");
 			String parameter = parameterAndValueArray[0].trim();
-			String value = XmlPath.from(response.asString()).get(parameterAndValueArray[1].trim());
+			String value = XmlPath.from(response).get(parameterAndValueArray[1].trim());
 			query = query.replace(parameter, value);
 		}
 		return query;
@@ -192,6 +204,8 @@ public class sendPatientAPI {
 		}
 		return h;
 	}
+	
+	
 
 	public String processTemplate(@SuppressWarnings("rawtypes") Map templateData) throws IOException {
 		Configuration cfg = new Configuration(new Version("2.3.23"));
