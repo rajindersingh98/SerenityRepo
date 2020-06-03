@@ -28,6 +28,8 @@ public class AddMedicationSteps {
 	 
 	 @Step("Verified {1} is present in response at path {2}")
 	    public void checkResponse(Response res, String responseString , String xPathForResponse){
+		 //List<String> lmSet = XmlPath.from(res.asString()).getList("RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList");
+		// System.out.println("lmSetlmSetlmSetlmSet"+lmSet);
 		 List<String> lm = XmlPath.from(res.asString()).getList(xPathForResponse);
 			if(lm.size() > 1)
 				res.then().assertThat().body(xPathForResponse, Matchers.hasItems(responseString.split(",")));

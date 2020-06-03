@@ -127,34 +127,28 @@ public class sendPatientAPI {
 				String queries[] = m.get("QUERY").toString().split("SEPERATOR");
 				String parameters[] = m.get("PARAMETERS").toString().split("SEPERATOR");
 				String verification[] = m.get("VERIFICATION").toString().split("SEPERATOR");
+				String verificationNew[] = m.get("VERIFICATIONNEW").toString().split("SEPERATOR");
 				for (int indexdBValidation = 0; indexdBValidation < dBValidation.length; indexdBValidation++) {
 					String finalQuery = finalQuery(responseAsString, queries[indexdBValidation].trim(),
 							parameters[indexdBValidation].trim());
+					String columns[] = verificationNew[indexdBValidation].split("=")[0].split(",");
+					String verifications[] = verificationNew[indexdBValidation].split("=")[1].trim().split(":");
 					String dbColumnValue[] = verification[indexdBValidation].split("VERIFICATIONSEP");
-					for (int indexDbColumnValue = 0; indexDbColumnValue < dbColumnValue.length; indexDbColumnValue++) {
-						@SuppressWarnings("rawtypes")
-						Map columnAndType = getColumnNameAndType(dbColumnValue[indexDbColumnValue]);
-						String columnValueToVerify = getColumnValueToverify(dbColumnValue[indexDbColumnValue]);
-						try {
-							ResultSet rs = getResultSet(dBValidation[indexdBValidation].trim(), finalQuery.trim());
-							Serenity.recordReportData().withTitle("Database evidence").andContents(rs.toString());
-							String valuetoAssert = m.get(columnValueToVerify.trim()).toString();
-							if ("RandomName".equals(m.get(columnValueToVerify.trim()).toString())) {
-								valuetoAssert = randomName;
-							}
-							while (rs.next()) {
-								if ("STRING".equals(columnAndType.get("type"))) {
-									addMedicationSteps.checkDBValidation(valuetoAssert,
-											rs.getString(columnAndType.get("column").toString()),
-											columnAndType.get("column").toString(), finalQuery.trim());
-								}
-							}
-						} finally {
-							//DFDBConnection.closeConnection();
+					ResultSet rs = getResultSet(dBValidation[indexdBValidation].trim(), finalQuery.trim());
+					ArrayList listOfResultsFromDB =new ArrayList<>();
+					while (rs.next()) {
+						String row ="" ;
+						for (int columnIndex = 0; columnIndex < columns.length; columnIndex++) {
+							String value  = rs.getString(columns[columnIndex]);
+							row = row +value+",";
 						}
+						row = row.substring(0, row.length()-1);
+						listOfResultsFromDB.add(row);
 					}
-
-					// Run query and validate verifications
+					for (int verificationIndex = 0; verificationIndex < verifications.length; verificationIndex++) {
+						assertTrue(listOfResultsFromDB.contains(verifications[verificationIndex]));
+					}
+									// Run query and validate verifications
 				}
 			}
 
