@@ -1,5 +1,8 @@
 package com.serenitybdd.cucumber.steps.serenity;
 
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
 import java.util.List;import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 
@@ -33,16 +36,19 @@ public class AddMedicationSteps {
 		 List<String> lm = XmlPath.from(res.asString()).getList(xPathForResponse);
 			if(lm.size() > 1)
 				res.then().assertThat().body(xPathForResponse, Matchers.hasItems(responseString.split(",")));
-			else
-				res.then().assertThat().body(xPathForResponse, Matchers.equalTo(responseString));
+			else {
+				if("blank".equals(responseString.trim())) {
+					res.then().assertThat().body(xPathForResponse, Matchers.equalTo(""));	
+				}
+				else {
+					res.then().assertThat().body(xPathForResponse, Matchers.equalTo(responseString.trim()));
+				}
+			}
 	    }
 	 
-	 @Step("Verfied the Database details Expected value {0} for column {2} \n"
-	 		+  "Query Ran :\n {3} \n"
-			 + "Actual Value:{1} \n"
-			 + "Expected Value: {0}")
-	    public void checkDBValidation(String expected , String actual, String dbColumnName , String query){
-		 Assert.assertEquals(expected, actual);
+	 @Step("DB Validation Expected value {1}")
+	    public void checkDBValidation(ArrayList listOfResultsFromDB, String expectedValue){
+		     assertTrue(listOfResultsFromDB.contains(expectedValue));
 	    }
 
 }

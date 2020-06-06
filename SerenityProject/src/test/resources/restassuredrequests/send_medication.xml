@@ -1,0 +1,74 @@
+xml=<RCExtRequest version="${Version}">
+<Caller>
+<Application>RcopiaUpdate</Application>
+<VendorName>skillamvendor</VendorName>
+<VendorPassword>demo3456</VendorPassword>
+<Version>1</Version>
+<Station>001</Station>
+</Caller>
+<RcopiaUserName></RcopiaUserName>
+<RcopiaPassword></RcopiaPassword>
+<RcopiaPracticeUsername>ne5567</RcopiaPracticeUsername>
+
+<SystemName>GA-NYY</SystemName>
+<RcopiaProviderSystemName></RcopiaProviderSystemName>
+<Request>
+<Command>send_medication</Command>
+<MedicationList>
+   <Medication>
+      <Deleted>${Deleted}</Deleted>
+      <RcopiaID></RcopiaID>
+      <ExternalID>${MedExternalID}</ExternalID>
+      <Patient>
+         <RcopiaID>${RcopiaPatientID}</RcopiaID>
+         <ExternalID></ExternalID>
+         <RcopiaPracticeID></RcopiaPracticeID>
+         <FirstName></FirstName>
+         <LastName></LastName>
+      </Patient>
+      <Provider>
+         <RcopiaID></RcopiaID>
+         <Username>skillam</Username>
+         <ExternalID />
+        
+      </Provider>
+      <Preparer>
+      
+         <Username>skillam</Username>
+      </Preparer>      
+      <Sig>
+         <Drug>
+            <RcopiaID></RcopiaID>
+<NDCID>50580011002</NDCID>
+<FirstDataBankMedID></FirstDataBankMedID>
+<RxnormID></RxnormID>
+<RxnormIDType></RxnormIDType>
+            <BrandName>Motrin IB</BrandName>
+            <GenericName>ibuprofen</GenericName>
+            <Form>tablet</Form>
+            <Strength>200 mg</Strength>
+         </Drug>
+         <Action>Take</Action>
+         <Dose>3</Dose>
+         <DoseUnit>tablet</DoseUnit>
+         <Route>by mouth</Route>
+         <DoseTiming>once a day</DoseTiming>
+         <DoseOther></DoseOther>
+         <Duration>30</Duration>
+         <Quantity>30</Quantity>
+         <QuantityUnit>tablets</QuantityUnit>
+         <Refills>0</Refills>
+         <SubstitutionPermitted>y</SubstitutionPermitted>
+         <OtherNotes>Directions to Pharmacidst</OtherNotes>
+         <PatientNotes>Additional Directions to Patient</PatientNotes>
+         <Comments>Comments For Office Use Only</Comments>
+      </Sig>   
+      <StartDate>${StartDate}</StartDate>
+		<StopDate>${StopDate}</StopDate>
+
+         
+<IsInPatientMedication>n</IsInPatientMedication>	  
+   </Medication>
+</MedicationList>
+</Request>
+</RCExtRequest>
