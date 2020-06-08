@@ -25,6 +25,15 @@ public class DFDBConnection {
 
 	}
 	
+	public static void commit() {
+		try {
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public static void closeConnection() {
 
 		if (conn != null) {
