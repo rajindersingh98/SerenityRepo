@@ -109,6 +109,14 @@ UPDATE_MEDICATION_VERSION_MM/dd/yyyy,"
 ",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='02/02/2020', raw_stop_date = '03/03/2024' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
+UPDATE_MEDICATION_VERSION_MM/dd/yyyy_HH:MM:SS ZZZ,"
+",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:23 EST
+STATUSSEP
+RCExtResponse.Response.MedicationList.Medication.StopDate=02/02/2024 23:23:23 EST",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='02/02/2020 23:23:23 EST', raw_stop_date = '02/02/2024 23:23:23 EST' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
+UPDATE_MEDICATION_VERSION_MM/dd/yyyy_HH:MM:SS,"
+",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:23 EST
+STATUSSEP
+RCExtResponse.Response.MedicationList.Medication.StopDate=02/02/2024 23:23:23 EST",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='02/02/2020 23:23:23', raw_stop_date = '02/02/2024 23:23:23' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_MM/dd/yy HH:mm,"
 ",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:00 EST
 STATUSSEP
