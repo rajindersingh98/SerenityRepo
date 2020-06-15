@@ -605,19 +605,3 @@ UPDATE_MEDICATION_VERSION_Version_2.38_RAW_START_AND_STOPDATE_UPDATED_TO_NULL_MM
 ",,VERIFYING_FALL_BACK_ON_START_STOP_DATE,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/21/2020 00:00:00 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate= 02/21/2024 00:00:00 EST",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date =null, raw_stop_date = null , startdate_precision='day' where medication_id = {MEDICATION_ID}"
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,
