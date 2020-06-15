@@ -1,153 +1,495 @@
-Test Case ID,Scenario,Group,MedExternalID,RcopiaPatientID,Deleted,StartDate,StopDate,DBVALIDATIONNEEDED,DB,QUERY,PARAMETERS,Version,Status,requestxml,VERIFICATIONNEW,GetDataFromPreviousTestForUpdateQuery,updateQuery
-Scenario Defination,,AAA,,,,,,,,,,,,,,,
-CREATE_MEDICATION,,MED_FORMAT_MM/DD/YYYY_HHMISS_ZZZ,MED_AUTOMATION,22265721189,n,02/21/2020 23:23:00 EST,02/21/2024 23:23:00 EST,y,QA2MAIN,"Select RAW_START_DATE, RAW_STOP_DATE, to_char(startdate,'YYYY-MM-DD HH24:MI:SS') as STARTDATE,to_char(stopdate,'YYYY-MM-DD HH24:MI:SS') as STOPDATE from medications where medication_id = {MEDICATIONID}",{MEDICATIONID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,2.38,RCExtResponse.Response.MedicationList.Medication.Status=created,send_medication.xml,"STARTDATE,STOPDATE,RAW_START_DATE,RAW_STOP_DATE=2020-02-21 23:23:00,2024-02-21 23:23:00,02/21/2020 23:23:00 EST,02/21/2024 23:23:00 EST",,
+Test Case ID,Scenario,Expected Results,Group,MedExternalID,RcopiaPatientID,Deleted,StartDate,StopDate,DBVALIDATIONNEEDED,DB,QUERY,PARAMETERS,Version,Status,requestxml,VERIFICATIONNEW,GetDataFromPreviousTestForUpdateQuery,updateQuery
+Scenario Defination,ALLOW_INCOMPLETE_DATES as n,,AAA,,,,,,,,,,,,,,,
+CREATE_MEDICATION,"1. Create a medication with Start and Stop Dates as 
+MM/DD/YYYY HH:MM:SS ZZZ
+02/21/2020 23:23:00 EST	
+02/21/2024 23:23:00 EST
+2. Update_Medication for version 2.38
+3. Update_Medication for version 2.35
+4. IN DB update raw_*_dates as null and perform update_medication","Step 1: Verify in DB we save dates as below:
+STARTDATE = 2020-02-21 23:23:00
+STOPDATE = 2024-02-21 23:23:00
+RAW_START_DATE = 02/21/2020 23:23:00 EST
+RAW_STOP_DATE = 02/21/2024 23:23:00 EST
+
+Step 2: update_medication shows :
+StartDate=02/21/2020 23:23:00 EST
+StopDate=02/21/2024 23:23:00 EST
+
+Step 3: update_medication shows :
+StartDate=02/21/2020 23:23:00 EST
+StopDate=02/21/2024 23:23:00 EST
+
+Step 3: update_medication pulls from start and stopdates columns and  shows :
+StartDate=02/21/2020 23:23:00 EST
+StopDate=02/21/2024 23:23:00 EST
+
+
+
+",MED_FORMAT_MM/DD/YYYY_HHMISS_ZZZ,MED_AUTOMATION,22265721189,n,02/21/2020 23:23:00 EST,02/21/2024 23:23:00 EST,y,QA2MAIN,"Select RAW_START_DATE, RAW_STOP_DATE, to_char(startdate,'YYYY-MM-DD HH24:MI:SS') as STARTDATE,to_char(stopdate,'YYYY-MM-DD HH24:MI:SS') as STOPDATE from medications where medication_id = {MEDICATIONID}",{MEDICATIONID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,2.38,RCExtResponse.Response.MedicationList.Medication.Status=created,send_medication.xml,"STARTDATE,STOPDATE,RAW_START_DATE,RAW_STOP_DATE=2020-02-21 23:23:00,2024-02-21 23:23:00,02/21/2020 23:23:00 EST,02/21/2024 23:23:00 EST",,
 UPDATE_MEDICATION_VERSION_2.38,"
-",MED_FORMAT_MM/DD/YYYY_HHMISS_ZZZ,MED_AUTOMATION,22265721189,n,02/21/2020 23:23:00 EST,02/21/2024 23:23:00 EST,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/21/2020 23:23:00 EST
+",,MED_FORMAT_MM/DD/YYYY_HHMISS_ZZZ,MED_AUTOMATION,22265721189,n,02/21/2020 23:23:00 EST,02/21/2024 23:23:00 EST,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/21/2020 23:23:00 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=02/21/2024 23:23:00 EST",update_medication.xml,,,
 UPDATE_MEDICATION_VERSION_2.37,"
-",MED_FORMAT_MM/DD/YYYY_HHMISS_ZZZ,MED_AUTOMATION,22265721189,n,02/21/2020 23:23:00 EST,02/21/2024 23:23:00 EST,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/21/2020 23:23:00 EST
+",,MED_FORMAT_MM/DD/YYYY_HHMISS_ZZZ,MED_AUTOMATION,22265721189,n,02/21/2020 23:23:00 EST,02/21/2024 23:23:00 EST,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/21/2020 23:23:00 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=02/21/2024 23:23:00 EST",update_medication.xml,,,
-CREATE_MEDICATION,"
+CREATE_MEDICATION,"1. Create a medication with Start and Stop Dates as 
+MM/DD/YYYY HH:MM:SS
+02/21/2020 23:23:00
+02/21/2024 23:23:00
+
+2. Update_Medication for version 2.38
+3. Update_Medication for version 2.35
+4. IN DB update raw_*_dates as null and perform update_medication","Step 1: Verify in DB we save dates as below:
+STARTDATE = 2020-02-21 23:23:00
+STOPDATE = 2024-02-21 23:23:00
+RAW_START_DATE = 02/21/2020 23:23:00
+RAW_STOP_DATE = 02/21/2024 23:23:00
+
+Step 2: update_medication shows :
+StartDate=02/21/2020 23:23:00 EST
+StopDate=02/21/2024 23:23:00 EST
+
+Step 3: update_medication shows :
+StartDate=02/21/2020 23:23:00 EST
+StopDate=02/21/2024 23:23:00 EST
+
+Step 3: update_medication pulls from start and stopdates columns and  shows :
+StartDate=02/21/2020 23:23:00 EST
+StopDate=02/21/2024 23:23:00 EST
+
+
+
 ",MED_FORMAT_WITHOUT_TIMEZONE_MM/DD/YYYY_HHMISS,MED_AUTOMATION,22265721189,n, 02/21/2020 23:23:00, 02/21/2024 23:23:00,y,QA2MAIN,"Select RAW_START_DATE, RAW_STOP_DATE, to_char(startdate,'YYYY-MM-DD HH24:MI:SS') as STARTDATE,to_char(stopdate,'YYYY-MM-DD HH24:MI:SS') as STOPDATE from medications where medication_id = {MEDICATIONID}",{MEDICATIONID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,2.38,RCExtResponse.Response.MedicationList.Medication.Status=created,send_medication.xml,"STARTDATE,STOPDATE,RAW_START_DATE,RAW_STOP_DATE=2020-02-21 23:23:00,2024-02-21 23:23:00,02/21/2020 23:23:00,02/21/2024 23:23:00",,
 UPDATE_MEDICATION_VERSION_2.38,"
-",MED_FORMAT_WITHOUT_TIMEZONE_MM/DD/YYYY_HHMISS,MED_AUTOMATION,22265721189,n, 02/21/2020 23:23:00, 02/21/2024 23:23:00,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/21/2020 23:23:00 EST
+",,MED_FORMAT_WITHOUT_TIMEZONE_MM/DD/YYYY_HHMISS,MED_AUTOMATION,22265721189,n, 02/21/2020 23:23:00, 02/21/2024 23:23:00,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/21/2020 23:23:00 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=02/21/2024 23:23:00 EST",update_medication.xml,,,
 UPDATE_MEDICATION_VERSION_2.37,"
-",MED_FORMAT_WITHOUT_TIMEZONE_MM/DD/YYYY_HHMISS,MED_AUTOMATION,22265721189,n, 02/21/2020 23:23:00, 02/21/2024 23:23:00,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/21/2020 23:23:00 EST
+",,MED_FORMAT_WITHOUT_TIMEZONE_MM/DD/YYYY_HHMISS,MED_AUTOMATION,22265721189,n, 02/21/2020 23:23:00, 02/21/2024 23:23:00,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/21/2020 23:23:00 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=02/21/2024 23:23:00 EST",update_medication.xml,,,
-CREATE_MEDICATION,"
-",MED_FORMAT_MM_YYYY_WITH_TIME,MED_AUTOMATION,22265721189,n,02/2020 23:00:00 EST, 02/2024 23:00:00 EST,y,QA2MAIN,"Select RAW_START_DATE, RAW_STOP_DATE, to_char(startdate,'YYYY-MM-DD HH24:MI:SS') as STARTDATE,to_char(stopdate,'YYYY-MM-DD HH24:MI:SS') as STOPDATE from medications where medication_id = {MEDICATIONID}",{MEDICATIONID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,2.38,RCExtResponse.Response.MedicationList.Medication.Status=created,send_medication.xml,"STARTDATE,STOPDATE,RAW_START_DATE,RAW_STOP_DATE=null,null,null,null",,
+CREATE_MEDICATION,"1. Create a medication with Start and Stop Dates as 
+MM/YYYY HH:MM:SS
+STARTDATE = 02/2020 23:00:00 EST
+STOPDATE = 02/2024 23:00:00 EST
+2. Update_Medication for version 2.38
+3. Update_Medication for version 2.35
+4. IN DB update raw_*_dates as null and perform update_medication","Step 1: Verify in DB we save dates as below:
+STARTDATE = null
+STOPDATE = null
+RAW_START_DATE = null
+RAW_STOP_DATE = null
+
+Step 2: update_medication shows :
+StartDate=blank
+StopDate=blank
+
+Step 3: update_medication shows :
+StartDate=blank
+StopDate=blank
+
+Step 3: update_medication pulls from start and stopdates columns and  shows :
+StartDate=blank
+StopDate=blank",MED_FORMAT_MM_YYYY_WITH_TIME,MED_AUTOMATION,22265721189,n,02/2020 23:00:00 EST, 02/2024 23:00:00 EST,y,QA2MAIN,"Select RAW_START_DATE, RAW_STOP_DATE, to_char(startdate,'YYYY-MM-DD HH24:MI:SS') as STARTDATE,to_char(stopdate,'YYYY-MM-DD HH24:MI:SS') as STOPDATE from medications where medication_id = {MEDICATIONID}",{MEDICATIONID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,2.38,RCExtResponse.Response.MedicationList.Medication.Status=created,send_medication.xml,"STARTDATE,STOPDATE,RAW_START_DATE,RAW_STOP_DATE=null,null,null,null",,
 UPDATE_MEDICATION_VERSION_2.38,"
-",MED_FORMAT_MM_YYYY_WITH_TIME,MED_AUTOMATION,22265721189,n,02/2020 23:00:00 EST, 02/2024 23:00:00 EST,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
+",STARTDATE = null,MED_FORMAT_MM_YYYY_WITH_TIME,MED_AUTOMATION,22265721189,n,02/2020 23:00:00 EST, 02/2024 23:00:00 EST,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=blank",update_medication.xml,,,
 UPDATE_MEDICATION_VERSION_2.37,"
-",MED_FORMAT_MM_YYYY_WITH_TIME,MED_AUTOMATION,22265721189,n,02/2020 23:00:00 EST, 02/2024 23:00:00 EST,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
+",STOPDATE = null,MED_FORMAT_MM_YYYY_WITH_TIME,MED_AUTOMATION,22265721189,n,02/2020 23:00:00 EST, 02/2024 23:00:00 EST,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=blank",update_medication.xml,,,
-CREATE_MEDICATION,"
-",MED_FORMAT_MM_YYYY_WITHOUT_TIME,MED_AUTOMATION,22265721189,n, 02/2020, 02/2024,y,QA2MAIN,"Select RAW_START_DATE, RAW_STOP_DATE, to_char(startdate,'YYYY-MM-DD HH24:MI:SS') as STARTDATE,to_char(stopdate,'YYYY-MM-DD HH24:MI:SS') as STOPDATE from medications where medication_id = {MEDICATIONID}",{MEDICATIONID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,2.38,RCExtResponse.Response.MedicationList.Medication.Status=created,send_medication.xml,"STARTDATE,STOPDATE,RAW_START_DATE,RAW_STOP_DATE=null,null,null,null",,
+CREATE_MEDICATION,"1. Create a medication with Start and Stop Dates as 
+MM/YYYY
+StartDate=02/2020
+StopDate=02/2024
+2. Update_Medication for version 2.38
+3. Update_Medication for version 2.35
+4. IN DB update raw_*_dates as null and perform update_medication","Step 1: Verify in DB we save dates as below:
+STARTDATE = null
+STOPDATE = null
+RAW_START_DATE = null
+RAW_STOP_DATE = null
+
+Step 2: update_medication shows :
+StartDate=blank
+StopDate=blank
+
+Step 3: update_medication shows :
+StartDate=blank
+StopDate=blank
+
+Step 3: update_medication pulls from start and stopdates columns and  shows :
+StartDate=blank
+StopDate=blank",MED_FORMAT_MM_YYYY_WITHOUT_TIME,MED_AUTOMATION,22265721189,n, 02/2020, 02/2024,y,QA2MAIN,"Select RAW_START_DATE, RAW_STOP_DATE, to_char(startdate,'YYYY-MM-DD HH24:MI:SS') as STARTDATE,to_char(stopdate,'YYYY-MM-DD HH24:MI:SS') as STOPDATE from medications where medication_id = {MEDICATIONID}",{MEDICATIONID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,2.38,RCExtResponse.Response.MedicationList.Medication.Status=created,send_medication.xml,"STARTDATE,STOPDATE,RAW_START_DATE,RAW_STOP_DATE=null,null,null,null",,
 UPDATE_MEDICATION_VERSION_2.38,"
-",MED_FORMAT_MM_YYYY_WITHOUT_TIME,MED_AUTOMATION,22265721189,n, 02/2020, 02/2024,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
+",RAW_STOP_DATE = null,MED_FORMAT_MM_YYYY_WITHOUT_TIME,MED_AUTOMATION,22265721189,n, 02/2020, 02/2024,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=blank",update_medication.xml,,,
 UPDATE_MEDICATION_VERSION_2.37,"
-",MED_FORMAT_MM_YYYY_WITHOUT_TIME,MED_AUTOMATION,22265721189,n, 02/2020, 02/2024,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
+",,MED_FORMAT_MM_YYYY_WITHOUT_TIME,MED_AUTOMATION,22265721189,n, 02/2020, 02/2024,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=blank",update_medication.xml,,,
-CREATE_MEDICATION,"
+CREATE_MEDICATION,"1. Create a medication with Start and Stop Dates as 
+MM/DD/YYYY
+StartDate=02/21/2020
+StopDate=02/21/2024
+2. Update_Medication for version 2.38
+3. Update_Medication for version 2.35
+4. IN DB update raw_*_dates as null and perform update_medication","Step 1: Verify in DB we save dates as below:
+STARTDATE = 2020-02-21 00:00:00
+STOPDATE = 2024-02-21 00:00:00
+RAW_START_DATE = 02/21/2020
+RAW_STOP_DATE=02/21/2024
+
+Step 2: update_medication shows :
+StartDate=02/21/2020
+StopDate=02/21/2024
+
+Step 3: update_medication shows :
+StartDate=02/21/2020 00:00:00 EST
+StopDate=02/21/2024 00:00:00 EST
+
+Step 3: update_medication pulls from start and stopdates columns and  shows :
+StartDate=02/21/2020 00:00:00 EST
+StopDate=02/21/2024 00:00:00 EST
+
+
 ",MED_FORMAT_MM/DD/YYYY,MED_AUTOMATION,22265721189,n, 02/21/2020, 02/21/2024,y,QA2MAIN,"Select RAW_START_DATE, RAW_STOP_DATE, to_char(startdate,'YYYY-MM-DD HH24:MI:SS') as STARTDATE,to_char(stopdate,'YYYY-MM-DD HH24:MI:SS') as STOPDATE from medications where medication_id = {MEDICATIONID}",{MEDICATIONID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,2.38,RCExtResponse.Response.MedicationList.Medication.Status=created,send_medication.xml,"STARTDATE,STOPDATE,RAW_START_DATE,RAW_STOP_DATE=2020-02-21 00:00:00,2024-02-21 00:00:00,02/21/2020,02/21/2024",,
 UPDATE_MEDICATION_VERSION_2.38,"
-",MED_FORMAT_MM/DD/YYYY,MED_AUTOMATION,22265721189,n, 02/21/2020, 02/21/2024,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/21/2020
+",StartDate=blank,MED_FORMAT_MM/DD/YYYY,MED_AUTOMATION,22265721189,n, 02/21/2020, 02/21/2024,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/21/2020
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=02/21/2024",update_medication.xml,,,
 UPDATE_MEDICATION_VERSION_2.37,"
-",MED_FORMAT_MM/DD/YYYY,MED_AUTOMATION,22265721189,n, 02/21/2020, 02/21/2024,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/21/2020 00:00:00 EST
+",StopDate=blank,MED_FORMAT_MM/DD/YYYY,MED_AUTOMATION,22265721189,n, 02/21/2020, 02/21/2024,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/21/2020 00:00:00 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=02/21/2024 00:00:00 EST",update_medication.xml,,,
-CREATE_MEDICATION,"
+CREATE_MEDICATION,"1. Create a medication with Start and Stop Dates as 
+YYYY
+StartDate=2020
+StopDate=2024
+2. Update_Medication for version 2.38
+3. Update_Medication for version 2.35
+4. IN DB update raw_*_dates as null and perform update_medication","Step 1: Verify in DB we save dates as below:
+STARTDATE = null
+STOPDATE = null
+RAW_START_DATE = null
+RAW_STOP_DATE = null
+
+Step 2: update_medication shows :
+StartDate=blank
+StopDate=blank
+
+Step 3: update_medication shows :
+StartDate=blank
+StopDate=blank
+
+Step 3: update_medication pulls from start and stopdates columns and  shows :
+StartDate=blank
+StopDate=blank
+
 ",MED_FORMAT_YYYY_WITHOUT_TIME,MED_AUTOMATION,22265721189,n,2020,2024,y,QA2MAIN,"Select RAW_START_DATE, RAW_STOP_DATE, to_char(startdate,'YYYY-MM-DD HH24:MI:SS') as STARTDATE,to_char(stopdate,'YYYY-MM-DD HH24:MI:SS') as STOPDATE from medications where medication_id = {MEDICATIONID}",{MEDICATIONID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,2.38,RCExtResponse.Response.MedicationList.Medication.Status=created,send_medication.xml,"STARTDATE,STOPDATE,RAW_START_DATE,RAW_STOP_DATE=null,null,null,null",,
 UPDATE_MEDICATION_VERSION_2.38,"
-",MED_FORMAT_YYYY_WITHOUT_TIME,MED_AUTOMATION,22265721189,n,2020,2024,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
+",,MED_FORMAT_YYYY_WITHOUT_TIME,MED_AUTOMATION,22265721189,n,2020,2024,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=blank",update_medication.xml,,,
 UPDATE_MEDICATION_VERSION_2.37,"
-",MED_FORMAT_YYYY_WITHOUT_TIME,MED_AUTOMATION,22265721189,n,2020,2024,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
+",StartDate=blank,MED_FORMAT_YYYY_WITHOUT_TIME,MED_AUTOMATION,22265721189,n,2020,2024,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=blank",update_medication.xml,,,
-CREATE_MEDICATION,"
-",MED_FORMAT_YYYY_WITH_TIME,MED_AUTOMATION,22265721189,n,2020 23:00:00 EST,2024 23:00:00 EST,y,QA2MAIN,"Select RAW_START_DATE, RAW_STOP_DATE, to_char(startdate,'YYYY-MM-DD HH24:MI:SS') as STARTDATE,to_char(stopdate,'YYYY-MM-DD HH24:MI:SS') as STOPDATE from medications where medication_id = {MEDICATIONID}",{MEDICATIONID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,2.38,RCExtResponse.Response.MedicationList.Medication.Status=created,send_medication.xml,"STARTDATE,STOPDATE,RAW_START_DATE,RAW_STOP_DATE=2020-02-03 00:00:00,2024-02-03 00:00:00,2020 23:00:00 EST,2024 23:00:00 EST",,
+CREATE_MEDICATION,"1. Create a medication with Start and Stop Dates as 
+YYYY HH:MM:SS EST
+StartDate=2020 23:00:00 EST
+StopDate=2024 23:00:00 EST
+2. Update_Medication for version 2.38
+3. Update_Medication for version 2.35
+4. IN DB update raw_*_dates as null and perform update_medication","Step 1: Verify in DB we save dates as below:
+STARTDATE = 2020-02-03 00:00:00
+STOPDATE = 2024-02-03 00:00:00
+RAW_START_DATE = 2020 23:00:00 EST
+RAW_STOP_DATE = 2024 23:00:00 EST
+
+Step 2: update_medication shows :
+StartDate=02/03/2020 00:00:00 EST
+StopDate=02/03/2024 00:00:00 EST
+
+Step 3: update_medication shows :
+StartDate=02/03/2020 00:00:00 EST
+StopDate=02/03/2024 00:00:00 EST
+
+Step 3: update_medication pulls from start and stopdates columns and  shows :
+StartDate=02/03/2020 00:00:00 EST
+StopDate=02/03/2024 00:00:00 EST",MED_FORMAT_YYYY_WITH_TIME,MED_AUTOMATION,22265721189,n,2020 23:00:00 EST,2024 23:00:00 EST,y,QA2MAIN,"Select RAW_START_DATE, RAW_STOP_DATE, to_char(startdate,'YYYY-MM-DD HH24:MI:SS') as STARTDATE,to_char(stopdate,'YYYY-MM-DD HH24:MI:SS') as STOPDATE from medications where medication_id = {MEDICATIONID}",{MEDICATIONID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,2.38,RCExtResponse.Response.MedicationList.Medication.Status=created,send_medication.xml,"STARTDATE,STOPDATE,RAW_START_DATE,RAW_STOP_DATE=2020-02-03 00:00:00,2024-02-03 00:00:00,2020 23:00:00 EST,2024 23:00:00 EST",,
 UPDATE_MEDICATION_VERSION_2.38,"
-",MED_FORMAT_YYYY_WITH_TIME,MED_AUTOMATION,22265721189,n,2020 23:00:00 EST,2024 23:00:00 EST,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/03/2020 00:00:00 EST
+",,MED_FORMAT_YYYY_WITH_TIME,MED_AUTOMATION,22265721189,n,2020 23:00:00 EST,2024 23:00:00 EST,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/03/2020 00:00:00 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=02/03/2024 00:00:00 EST",update_medication.xml,,,
 UPDATE_MEDICATION_VERSION_2.37,"
-",MED_FORMAT_YYYY_WITH_TIME,MED_AUTOMATION,22265721189,n,2020 23:00:00 EST,2024 23:00:00 EST,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/03/2020 00:00:00 EST
+",,MED_FORMAT_YYYY_WITH_TIME,MED_AUTOMATION,22265721189,n,2020 23:00:00 EST,2024 23:00:00 EST,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/03/2020 00:00:00 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=02/03/2024 00:00:00 EST",update_medication.xml,,,
-CREATE_MEDICATION,"
+CREATE_MEDICATION,"1. Create a medication with Start and Stop Dates as 
+UNSUPPORTED FORMAT
+STARTDATE = 43862.97431
+STOPDATE = 43862.97431
+2. Update_Medication for version 2.38
+3. Update_Medication for version 2.35
+4. IN DB update raw_*_dates as null and perform update_medication","Step 1: Verify in DB we save dates as below:
+STARTDATE = null
+STOPDATE = null
+RAW_START_DATE = null
+RAW_STOP_DATE=null
+
+Step 2: update_medication shows :
+StartDate=blank
+StopDate=blank
+
+Step 3: update_medication shows :
+StartDate=blank
+StopDate=blank
+
+Step 3: update_medication pulls from start and stopdates columns and  shows :
+StartDate=blank
+StopDate=blank
+
+
 ",MED_FORMAT_UNSUPPORTED_FORMAT,MED_AUTOMATION,22265721189,n,43862.97431,45323.97431,y,QA2MAIN,"Select RAW_START_DATE, RAW_STOP_DATE, to_char(startdate,'YYYY-MM-DD HH24:MI:SS') as STARTDATE,to_char(stopdate,'YYYY-MM-DD HH24:MI:SS') as STOPDATE from medications where medication_id = {MEDICATIONID}",{MEDICATIONID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,2.38,RCExtResponse.Response.MedicationList.Medication.Status=created,send_medication.xml,"STARTDATE,STOPDATE,RAW_START_DATE,RAW_STOP_DATE=null,null,null,null",,
 UPDATE_MEDICATION_VERSION_2.38,"
-",MED_FORMAT_UNSUPPORTED_FORMAT,MED_AUTOMATION,22265721189,n,43862.97431,45323.97431,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
+",StopDate=blank,MED_FORMAT_UNSUPPORTED_FORMAT,MED_AUTOMATION,22265721189,n,43862.97431,45323.97431,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=blank",update_medication.xml,,,
 UPDATE_MEDICATION_VERSION_2.37,"
-",MED_FORMAT_UNSUPPORTED_FORMAT,MED_AUTOMATION,22265721189,n,43862.97431,45323.97431,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
+",,MED_FORMAT_UNSUPPORTED_FORMAT,MED_AUTOMATION,22265721189,n,43862.97431,45323.97431,n,,,,2.35,"RCExtResponse.Response.MedicationList.Medication.StartDate=blank
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=blank",update_medication.xml,,,
 CREATE_MEDICATION,"
-Send_Medication 
-update date format
-perform update_medication",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,2020,2024,n,,,,2.38,RCExtResponse.Response.MedicationList.Medication.Status=created,send_medication.xml,,,
+1. Create a medication with Start and Stop Dates as 
+2. Update created medication as (mm/dd/yy hh:mm:ss):
+update medications set raw_start_date ='02/02/20 23:23:23', raw_stop_date = '03/03/24 22:22:22' , startdate_precision='day' where medication_id = {MEDICATION_ID}
+
+Perform - > Update_Medication for version 2.38
+
+3. Update created medication as (mm/dd/yy):
+update medications set raw_start_date ='02/02/20', raw_stop_date = '03/03/24' , startdate_precision='day' where medication_id = {MEDICATION_ID}
+
+Perform - > Update_Medication for version 2.38
+
+4. Update created medication as (mm/yyyy):
+update medications set raw_start_date ='02/2020', raw_stop_date = '03/03/2024' , startdate_precision='month' where medication_id = {MEDICATION_ID}
+
+Perform - > Update_Medication for version 2.38
+NOTE: stopdate cannot be incomplete
+
+5. Update created medication as (mm/dd/yyyy):
+update medications set raw_start_date ='02/02/2020', raw_stop_date = '03/03/2024' , startdate_precision='day' where medication_id = {MEDICATION_ID}
+
+Perform - > Update_Medication for version 2.38
+NOTE: stopdate cannot be incomplete
+
+6. Update created medication as (mm/dd/yyyy hh:mm:ss ZZZ):
+update medications set raw_start_date ='02/02/2020 23:23:23 EST', raw_stop_date = '02/02/2024 23:23:23 EST' , startdate_precision='day' where medication_id = {MEDICATION_ID}
+
+Perform - > Update_Medication for version 2.38
+NOTE: stopdate cannot be incomplete
+
+7. Update created medication as (mm/dd/yyyy hh:mm:ss):
+update medications set raw_start_date ='02/02/2020 23:23:23', raw_stop_date = '02/02/2024 23:23:23' , startdate_precision='day' where medication_id = {MEDICATION_ID}
+
+Perform - > Update_Medication for version 2.38
+NOTE: stopdate cannot be incomplete
+
+8. Update created medication as (yyyy-MM-dd'T'HH:mm:ssZ):
+update medications set raw_start_date ='2020-02-02T23:23:23+0500', raw_stop_date = '2024-03-03T22:22:22+0500' , startdate_precision='day' where medication_id = {MEDICATION_ID}
+
+Perform - > Update_Medication for version 2.38
+NOTE: stopdate cannot be incomplete
+
+9. Update created medication as (yyyyMMdd HH:mm:ss):
+update medications set raw_start_date ='20200202 23:23:23', raw_stop_date = '20240303 22:22:22' , startdate_precision='day' where medication_id = {MEDICATION_ID}
+
+
+Perform - > Update_Medication for version 2.38
+NOTE: stopdate cannot be incomplete
+
+10. Update created medication as (yyyyMMddHHmm):
+update medications set raw_start_date ='202002022323', raw_stop_date = '202403032222' , startdate_precision='day' where medication_id = {MEDICATION_ID}
+
+Perform - > Update_Medication for version 2.38
+NOTE: stopdate cannot be incomplete
+
+11. Update created medication as (yyyyMMdd HH:mm):
+update medications set raw_start_date ='20200202 23:23', raw_stop_date = '20240303 22:22' , startdate_precision='day' where medication_id = {MEDICATION_ID}
+
+Perform - > Update_Medication for version 2.38
+NOTE: stopdate cannot be incomplete
+
+12. Update created medication as (yyyyMMdd):
+update medications set raw_start_date ='20200202', raw_stop_date = '20240303' , startdate_precision='day' where medication_id = {MEDICATION_ID}
+
+Perform - > Update_Medication for version 2.38
+NOTE: stopdate cannot be incomplete
+
+13. Update created medication as (yyyy) and stopdate as null:
+update medications set raw_start_date ='2020', raw_stop_date = null , startdate_precision='year' where medication_id = {MEDICATION_ID}
+
+
+Perform - > Update_Medication for version 2.38
+NOTE: stopdate cannot be incomplete
+
+14. Update created medication as (yyyy-mm) and stopdate as null:
+update medications set raw_start_date ='2020-02', raw_stop_date = null , startdate_precision='month' where medication_id = {MEDICATION_ID}
+
+
+Perform - > Update_Medication for version 2.38
+NOTE: stopdate cannot be incomplete
+
+15. Update created medication as (yyyy-mm-dd) and stopdate as null:
+update medications set raw_start_date ='2020-02-02', raw_stop_date = '2024-03-03' , startdate_precision='day' where medication_id = {MEDICATION_ID}
+
+
+Perform - > Update_Medication for version 2.38
+NOTE: stopdate cannot be incomplete
+
+16. Update created medication as (MM/dd/yy HH:mm:ss Z) and stopdate as null:
+update medications set raw_start_date ='02/02/20 23:23:23 +0500', raw_stop_date = '03/03/24 22:22:22 +0500' , startdate_precision='day' where medication_id = {MEDICATION_ID}
+
+17. Update created medication as (yyyyMMdd HH:mm:ss Z) and stopdate as null:
+update medications set raw_start_date ='20200202 23:23:23 +0500', raw_stop_date = '20240303 22:22:22 +0500' , startdate_precision='day' where medication_id = {MEDICATION_ID}
+
+Perform - > Update_Medication for version 2.38
+NOTE: stopdate cannot be incomplete","Verify
+2 :
+StartDate=02/02/2020 23:23:23 EST
+StopDate=03/03/2024 22:22:22 EST
+
+3:
+StartDate=02/02/2020
+StopDate=03/03/2024
+
+4:
+StartDate=02/2020
+StopDate=03/03/2024
+
+5:
+StartDate=02/02/2020
+StopDate=03/03/2024
+
+6:
+StartDate=02/02/2020 23:23:23 EST
+StopDate=02/02/2024 23:23:23 EST
+
+7:
+StartDate=02/02/2020 23:23:23 EST
+StopDate=02/02/2024 23:23:23 EST
+
+8:
+StartDate=02/02/2020 13:23:23 EST
+StopDate=03/03/2024 12:22:22 EST
+
+9:
+StartDate=02/02/2020 23:23:23 EST
+StopDate=03/03/2024 22:22:22 EST
+
+10:
+StartDate=02/02/2020 23:23:00 EST
+StopDate=03/03/2024 22:22:00 EST
+
+11:
+StartDate=02/02/2020 23:23:00 EST
+StopDate=03/03/2024 22:22:00 EST
+
+12:
+StartDate=02/02/2020
+StopDate=03/03/2024
+
+13:
+StartDate=2020
+StopDate=blank
+
+
+14:
+StartDate=02/2020
+StopDate=blank
+
+15:
+StartDate=02/02/2020
+StopDate=03/03/2024
+
+16:
+StartDate=02/02/2020 13:23:23 EST
+StopDate=03/03/2024 12:22:22 EST
+
+17:
+StartDate=02/02/2020 13:23:23 EST
+StopDate=03/03/2024 12:22:22 EST",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,2020,2024,n,,,,2.38,RCExtResponse.Response.MedicationList.Medication.Status=created,send_medication.xml,,,
 UPDATE_MEDICATION_VERSION_MM/dd/yy HH:mm:ss,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:23 EST
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:23 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024 22:22:22 EST",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='02/02/20 23:23:23', raw_stop_date = '03/03/24 22:22:22' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_MM/dd/yy,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='02/02/20', raw_stop_date = '03/03/24' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_MM/yyyy,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/2020
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/2020
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='02/2020', raw_stop_date = '03/03/2024' , startdate_precision='month' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_MM/dd/yyyy,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='02/02/2020', raw_stop_date = '03/03/2024' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_MM/dd/yyyy_HH:MM:SS ZZZ,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:23 EST
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:23 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=02/02/2024 23:23:23 EST",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='02/02/2020 23:23:23 EST', raw_stop_date = '02/02/2024 23:23:23 EST' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_MM/dd/yyyy_HH:MM:SS,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:23 EST
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:23 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=02/02/2024 23:23:23 EST",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='02/02/2020 23:23:23', raw_stop_date = '02/02/2024 23:23:23' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
-UPDATE_MEDICATION_VERSION_MM/dd/yy HH:mm,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:00 EST
-STATUSSEP
-RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024 22:22:00 EST",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='02/02/20 23:23', raw_stop_date = '03/03/24 22:22' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_yyyy-MM-dd'T'HH:mm:ssZ,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 13:23:23 EST
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 13:23:23 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024 12:22:22 EST",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='2020-02-02T23:23:23+0500', raw_stop_date = '2024-03-03T22:22:22+0500' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_yyyyMMdd HH:mm:ss,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:23 EST
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:23 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024 22:22:22 EST",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='20200202 23:23:23', raw_stop_date = '20240303 22:22:22' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_yyyyMMddHHmm,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:00 EST
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:00 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024 22:22:00 EST",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='202002022323', raw_stop_date = '202403032222' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_yyyyMMdd HH:mm,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:00 EST
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:00 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024 22:22:00 EST",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='20200202 23:23', raw_stop_date = '20240303 22:22' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_yyyyMMdd,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='20200202', raw_stop_date = '20240303' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_yyyy,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=2020
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=2020
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=blank",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='2020', raw_stop_date = null , startdate_precision='year' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_yyyy-MM,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/2020
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/2020
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=blank",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='2020-02', raw_stop_date = null , startdate_precision='month' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_yyyy-MM-dd,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='2020-02-02', raw_stop_date = '2024-03-03' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_MM/dd/yy HH:mm:ss Z,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 13:23:23 EST
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 13:23:23 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024 12:22:22 EST",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='02/02/20 23:23:23 +0500', raw_stop_date = '03/03/24 22:22:22 +0500' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
 UPDATE_MEDICATION_VERSION_yyyyMMdd HH:mm:ss Z,"
-",VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 13:23:23 EST
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 13:23:23 EST
 STATUSSEP
 RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024 12:22:22 EST",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='20200202 23:23:23 +0500', raw_stop_date = '20240303 22:22:22 +0500' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
+UPDATE_MEDICATION_VERSION_MM/dd/yy HH:mm,"
+",,VERIFYING_DIFF_DATE_FORMATS,MED_AUTOMATION,22265721189,n,,,n,,,,2.38,"RCExtResponse.Response.MedicationList.Medication.StartDate=02/02/2020 23:23:00 EST
+STATUSSEP
+RCExtResponse.Response.MedicationList.Medication.StopDate=03/03/2024 22:22:00 EST",update_medication.xml,,{MEDICATION_ID}=RCExtResponse.Response.MedicationList.Medication.RcopiaID,"update medications set raw_start_date ='02/02/20 23:23', raw_stop_date = '03/03/24 22:22' , startdate_precision='day' where medication_id = {MEDICATION_ID}"
