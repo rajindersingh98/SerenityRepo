@@ -635,6 +635,9 @@ NEW_PATIENT_SYATEM_NAME_SPECIAL_CHAR,"1. Add Patient with one ExternalID
 SEPERATOR
 LAST_NAME TYPE STRING=LastName",sysautonew1,,,"RCExtResponse.Response.PatientList.Patient.Status=created:
 RCExtResponse.Response.PatientList.Patient.ExternalIdentifierList.ExternalIdentifier.SystemName=ub1_2_5",,,"FIRST_NAME,LAST_NAME,MIDDLE_INITIAL,SYSTEM_NAME,EXTERNAL_ID=mango,mango,mango,ub1_2_5,@#$^*(_34)U _)(/ee-5!~`?.,^",,
+DELETE_PATIENT_SINGLE_EXT_ID_OLD_WAY_TWO,"1. Add Patient with  ExternalID
+3.update same patient
+",OLDEXTID,,Automation,MI,oldextid,y,n,,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,oldExtIDlatest,oldSysName
 DELETE_PATIENT_SINGLE_EXT_ID_OLD_WAY,"1. Add Patient with  ExternalID
 3.update same patient
 ",OLDEXTID,,Automation,MI,oldextid,y,n,,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,oldExtID,oldSysName
@@ -644,6 +647,12 @@ NEW_PATIENT_SINGLE_EXT_ID_OLD_WAY,"1. Add Patient with  ExternalID
 UPDATE_NEW_PATIENT_SINGLE_EXT_ID_OLD_WAY,"1. Add Patient with  ExternalID
 3.update same patient
 ",OLDEXTID,,Automation,MI,oldextidupdate,n,y,QA2MAIN,"Select * from rcopia_xref rx, patients p where  rcopia_id= {PATIENTID} and p.patient_id = rx.rcopia_id and p.deleted='n'",{PATIENTID}=RCExtResponse.Response.PatientList.Patient.RcopiaID,,,,,RCExtResponse.Response.PatientList.Patient.Status=updated,,,"FIRST_NAME,LAST_NAME,MIDDLE_INITIAL,SYSTEM_NAME,EXTERNAL_ID=Automation,oldextidupdate,MI,oldsysname,oldExtID",oldExtID,oldSysName
+NEW_PATIENT_SINGLE_EXT_ID_OLD_WAY_WHEN_EXT_UPDATE_SYSNAME_SAME,"1. Add Patient with  ExternalID
+3.update same patient
+",OLDEXTID,,Automation,MI,oldextidupdate,n,n,,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=created,,,,oldExtIDlatest,oldSysName
 DELETE_PATIENT_SINGLE_EXT_ID_OLD_WAY,"1. Add Patient with  ExternalID
 3.update same patient
 ",OLDEXTID,,Automation,MI,oldextid,y,n,,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,oldExtID,oldSysName
+DELETE_PATIENT_SINGLE_EXT_ID_OLD_WAY_TWO,"1. Add Patient with  ExternalID
+3.update same patient
+",OLDEXTID,,Automation,MI,oldextid,y,n,,,,,,,,RCExtResponse.Response.PatientList.Patient.Status=deleted,,,,oldExtIDlatest,oldSysName
